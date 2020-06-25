@@ -162,7 +162,3 @@ CREATE TABLE LOGS_INTO
     FOREIGN KEY (Customer_Email) REFERENCES CUSTOMER (Email)
     ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-
--- need inserts for data
-
