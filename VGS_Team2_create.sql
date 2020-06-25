@@ -1,5 +1,4 @@
--- *** PROJECT TEAM 2 DELIVERABLE 3 DDL STATEMENTS AND 
--- *** LOAD TABLES WITH SAMPLE DATA *** 
+-- *** PROJECT TEAM 2 DELIVERABLE 3 DDL CREATE STATEMENTS  *** 
 -- Adam Clifton (akclifto@asu.edu)
 -- Anne Landrum (aelandru@asu.edu)
 -- Ivan Fernandez (iafernan@asu.edu)
