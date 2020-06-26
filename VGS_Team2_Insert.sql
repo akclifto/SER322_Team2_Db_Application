@@ -1,4 +1,4 @@
--- *** PROJECT TEAM 2 DELIVERABLE 3 INSERT DATA *** 
+-- *** PROJECT TEAM 2 DELIVERABLE 3 INSERT STATEMENTS *** 
 -- Adam Clifton (akclifto@asu.edu)
 -- Anne Landrum (aelandru@asu.edu)
 -- Ivan Fernandez (iafernan@asu.edu)
