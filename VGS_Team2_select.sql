@@ -45,7 +45,7 @@ FROM TITLE t
 WHERE acct.Member_ID = 'TheCrow';
 
 
--- Query to Select all saved game files for user "TheDestroyer85" that are actively in ther user's library and show game platform
+-- Query to Select all saved game files for user "TheDestroyer85" that are actively in ther user's library and show game platform(s)
 SELECT acct.Member_ID, t.Title_Name, p.Platform_Name
 FROM  TITLE t
 	JOIN USER_LIBRARY ul ON ul.UPC = t.UPC 
@@ -54,4 +54,6 @@ FROM  TITLE t
 	JOIN ACCOUNT acct ON acct.Member_ID = ul.Member_ID
 WHERE acct.Member_ID = "TheDestroyer85" 
 	AND t.UPC = sgf.UPC
-GROUP BY t.Title_Name;
+GROUP BY t.Title_Name, p.Platform_Name;
+
+
