@@ -3,7 +3,7 @@ SER322 Project Team 2 database application implementation for team deliverables.
 
 **DELIVERABLE REQUIREMENTS:** 
 
-# Deliverable 3: Database Implementation
+# Deliverable 3: Database Implementation (Complete)
 * Given the E-R diagram and sets of attributes for each entity, the next step is to convert
 the E-R model into a relational model and implement the database tables:
   * Data should be supplied for each table. The amount of data should be such
