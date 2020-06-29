@@ -6,13 +6,13 @@
 */
 
 
--- Query to select all platforms available on VGS by name.
+-- Query to select all currently platforms available on VGS by name.
 SELECT PLATFORM.Platform_Name
 FROM PLATFORM, PLATFORM_TYPE
 WHERE PLATFORM.Platform_Name = PLATFORM_TYPE.Platform_Name;
 
 
--- Query to select all available titles, their description, ESRB Rating, and platform available on VGS
+-- Query to select all available titles, their description, ESRB Rating, and platform available on VGS.
 SELECT TITLE.Title_Name, TITLE.Description, TITLE.ESRB_Rating, PLATFORM.Platform_Name
 FROM TITLE, PLATFORM
 ORDER BY TITLE.Title_Name ASC;
@@ -45,7 +45,8 @@ FROM TITLE t
 WHERE acct.Member_ID = 'TheCrow';
 
 
--- Query to Select all saved game files for user "TheDestroyer85" that are actively in ther user's library and show game platform(s)
+-- Query to Select all saved game files for user "TheDestroyer85" that are actively in ther user's library and 
+-- show game platform(s).
 SELECT acct.Member_ID, t.Title_Name, p.Platform_Name
 FROM  TITLE t
 	JOIN USER_LIBRARY ul ON ul.UPC = t.UPC 
