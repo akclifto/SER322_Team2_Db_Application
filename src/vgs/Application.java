@@ -1,9 +1,7 @@
 package vgs;
 
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * This application for Video Game Services (VGS) will be used as an interface to display a user menu that will
@@ -34,21 +32,36 @@ public class Application {
      * */
     public static void main(String[] args) {
 
+        //TODO: if using CLI for app can use initial args from cli launch for url, user, pdw, driver
 
         System.out.println("---------------------------------------------------");
         System.out.println("*** Welcome to the Video Game Services Database ***");
         System.out.println("---------------------------------------------------\n");
         System.out.print("Connecting to server and loading database...");
 
-        //TODO: try/catch connection and load db
+        String _url = args[0];
+
+        //TODO: use the VGS-names sequel files in order: (1) create, (2) insert, and (3) altertable
+        try {
+            // load the JDBC Driver
+            Class.forName(args[3]);
+
+            //make a connection
+            conn = DriverManager.getConnection(_url, args[1], args[2]);
+
+        } catch (ClassNotFoundException | SQLException se) {
+            System.out.println("Error load the JDBC Driver and/or connecting to server.");
+            se.printStackTrace();
+        }
 
 
         System.out.println("done!\n");
 
         System.out.println("Main Menu: ");
-        // TODO: write a query, add to the db, remove from the db?, use default queries from select.sql file.
+        // TODO: options: write a query, add to the db, remove from the db?, use default queries from select.sql file.
 
-        // TODO: user inputs.
+        // TODO: user inputs, then send off to either other class or methods.+
+
 
     }
 
