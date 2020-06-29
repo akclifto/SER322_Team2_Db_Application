@@ -36,7 +36,7 @@ public class Application {
      */
     public static void main(String[] args) {
 
-        //TODO: if using CLI for app can use initial args from cli launch for url, user, pdw, driver
+        //TODO: if using CLI for app can use initial args from cli launch for url, user, pw, driver
 
         System.out.println("---------------------------------------------------");
         System.out.println("*** Welcome to the Video Game Services Database ***");
@@ -57,9 +57,8 @@ public class Application {
             System.out.println("Error load the JDBC driver and/or connecting to server.");
             se.printStackTrace();
         }
-
-
         System.out.println("done!\n");
+
 
         System.out.println("Main Menu: ");
         // TODO: options: write a query, add to the db, remove from the db?, use default queries from select.sql file.
