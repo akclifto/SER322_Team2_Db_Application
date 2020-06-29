@@ -1,21 +1,25 @@
 package vgs;
 
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
 
 /**
  * This application for Video Game Services (VGS) will be used as an interface to display a user menu that will
  * load the VGS database and allow the user to run various related actions on the given database, implemented with
  * JDBC.
- *
+ * <p>
  * @author Adam Clifton (akclifto@asu.edu)
  * @author Anne Landrum (aelandru@asu.edu)
  * @author Ivan Fernandez (iafernan@asu.edu)
  * @author Robert Ibarra (rnibarra@asu.edu)
- *
+ * <p>
  * SER 322 Project Team 2 Deliverable 4
  * @version 2020.06.29
- * */
+ */
 public class Application {
 
     //TODO:
@@ -29,7 +33,7 @@ public class Application {
      *
      * @param args : args specified by user, if any.
      * @return void.
-     * */
+     */
     public static void main(String[] args) {
 
         //TODO: if using CLI for app can use initial args from cli launch for url, user, pdw, driver
@@ -50,7 +54,7 @@ public class Application {
             conn = DriverManager.getConnection(_url, args[1], args[2]);
 
         } catch (ClassNotFoundException | SQLException se) {
-            System.out.println("Error load the JDBC Driver and/or connecting to server.");
+            System.out.println("Error load the JDBC driver and/or connecting to server.");
             se.printStackTrace();
         }
 
