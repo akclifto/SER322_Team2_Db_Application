@@ -3,18 +3,6 @@ SER322 Project Team 2 database application implementation for team deliverables.
 
 **DELIVERABLE REQUIREMENTS:** 
 
-# Deliverable 3: Database Implementation (Complete)
-* Given the E-R diagram and sets of attributes for each entity, the next step is to convert
-the E-R model into a relational model and implement the database tables:
-  * Data should be supplied for each table. The amount of data should be such
-that the application can be tested and demonstrated.
-  * Identify and write a variety of SQL queries to demonstrate the usefulness of
-your database Deliverables (via Canvas):
-  * Relational Model figure (similar to Assignment 4)
-  * SQL scripts (scripts for creation of the database and tables)
-  * SQL Scripts to load tables with sample data
-  * SQL scripts for most important queries (SELECT queries)
-
 # Deliverable 4: Application Implementation and Demo/Presentation
 * Build a Java-based application that uses the database that you have created. Provide a
 simple UI that can be used to enter parameters for the queries and display results from
@@ -27,4 +15,19 @@ Deliverables:
   * Readme with instructions on creating the database and setting up the application
   * Video (approximately 5 minutes in length) demonstrating the application and
 explaining the structure of the code.
+
+
+# Deliverable 3: Database Implementation (Complete)
+* Given the E-R diagram and sets of attributes for each entity, the next step is to convert
+the E-R model into a relational model and implement the database tables:
+  * Data should be supplied for each table. The amount of data should be such
+that the application can be tested and demonstrated.
+  * Identify and write a variety of SQL queries to demonstrate the usefulness of
+your database Deliverables (via Canvas):
+  * Relational Model figure (similar to Assignment 4)
+  * SQL scripts (scripts for creation of the database and tables)
+  * SQL Scripts to load tables with sample data
+  * SQL scripts for most important queries (SELECT queries)
+
+
 
