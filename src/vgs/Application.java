@@ -63,9 +63,37 @@ public class Application {
         System.out.println("Main Menu: ");
         // TODO: options: write a query, add to the db, remove from the db?, use default queries from select.sql file.
 
-        // TODO: user inputs, then send off to either other class or methods.+
 
+        try {
 
+            // TODO: user inputs, then send off to either other class or methods.
+            // TODO: should be in a while loop or similar while user input != "exit program"
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                    System.out.println("ResultSet closed!");
+                }
+                if (stmt != null) {
+                    stmt.close();
+                    System.out.println("Query Statement closed!");
+                }
+            } catch (SQLException se) {
+                System.out.println("There is a problem closing database resources!");
+                se.printStackTrace();
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                    System.out.println("Connection closed!");
+                }
+            } catch (Throwable se) {
+                System.out.println("There is a leak!");
+                se.printStackTrace();
+            }
+        }
     }
-
 }
