@@ -61,7 +61,12 @@ public class Application {
 
 
         System.out.println("Main Menu: ");
-        // TODO: options: write a query, add to the db, remove from the db?, use default queries from select.sql file.
+        System.out.println("1 - Write your own query");
+        System.out.println("2 - Use preset queries provided with application"); //TODO: use default _select.sql
+        System.out.println("3 - Insert data into database");
+        System.out.println("4 - Remove data from database"); //TODO:  maybe do this one?
+        System.out.println("Q - Exit Program\n");
+        System.out.print("Please select an option: ");
 
 
         try {
