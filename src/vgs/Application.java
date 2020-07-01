@@ -46,7 +46,7 @@ public class Application {
      * @return void.
      */
     private static void selectPreset(Scanner scan) {
-        //TODO:
+        //TODO: select presets
     }
 
     /**
@@ -56,7 +56,7 @@ public class Application {
      * @return void.
      */
     private static void insertData(Scanner scan) {
-        //TODO:
+        //TODO: insert manual data
     }
 
     /**
@@ -66,7 +66,7 @@ public class Application {
      * @return void.
      */
     private static void removeData(Scanner scan) {
-        //TODO:
+        //TODO: remove data with query command
     }
 
 
@@ -79,13 +79,16 @@ public class Application {
     private static void exitProgram(Scanner scan) {
 
         System.out.println("Exiting Program.");
-
-
+        scan.close();
     }
 
-
+    /**
+     * Method to get input for application via CLI.  Method passed arguments based on
+     * @return void.
+     * */
     private static void getUserInput() {
 
+        //show menu options
         System.out.println("Main Menu: ");
         System.out.println("1 - Write your own query");
         System.out.println("2 - Use preset queries provided with application"); //TODO: use default _select.sql
@@ -94,7 +97,7 @@ public class Application {
         System.out.println("Q - Exit Program\n");
         System.out.print("Please select an option: ");
 
-
+        //set scanner and get input
         try (Scanner scan = new Scanner(System.in)) {
 
             // TODO: user inputs, then send off to either other class or methods.
@@ -117,6 +120,7 @@ public class Application {
                 } else if (in.equalsIgnoreCase(("Q"))) {
 
                     exitProgram(scan);
+                    break;
                 } else {
 
                     System.out.println("Invalid user input.  Please choose a valid option");
@@ -128,8 +132,8 @@ public class Application {
             // TODO: should be in a while loop or similar while user input != "exit program"
 
         } catch (Exception ex) {
+            System.out.println("There was a problem getting user input.");
             ex.printStackTrace();
-
         }
     }
 
@@ -150,7 +154,7 @@ public class Application {
 
         String _url = args[0];
 
-        //TODO: use the VGS-names sequel files in order: (1) create, (2) insert, and (3) altertable
+        
         try {
             // load the JDBC Driver
             Class.forName(args[3]);
