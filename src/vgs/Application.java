@@ -191,6 +191,7 @@ public class Application {
     private static void selectPreset(Scanner scan) {
         //select presets
         //TODO: issue with query 4, throws error.
+        //TODO: will need to pretty print output.
 
         String query1 ="SELECT PLATFORM.Platform_Name FROM PLATFORM, PLATFORM_TYPE WHERE PLATFORM.Platform_Name = PLATFORM_TYPE.Platform_Name";
 
