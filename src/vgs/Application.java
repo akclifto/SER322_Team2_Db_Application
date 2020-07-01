@@ -37,41 +37,57 @@ public class Application {
      */
     private static void writeQuery(Scanner scan) {
         //TODO: manual queries
+        System.out.println("placeholder writeQuery");
+
+        //after method finished, get user input
+        getUserInput();
     }
 
     /**
-     * Method to run select.sql presets
+     * Method to run select.sql presets.
      *
      * @param scan : scanner for user input.
      * @return void.
      */
     private static void selectPreset(Scanner scan) {
         //TODO: select presets
+        System.out.println("placeholder selectPreset");
+
+        //after method finished, get user input
+        getUserInput();
     }
 
     /**
-     * Method to insert into database
+     * Method to insert into database.
      *
      * @param scan : scanner for user input.
      * @return void.
      */
     private static void insertData(Scanner scan) {
         //TODO: insert manual data
+        System.out.println("placeholder insertData");
+
+        //after method finished, get user input
+        getUserInput();
     }
 
     /**
-     * Method to remove data from database
+     * Method to remove data from database.
      *
      * @param scan : scanner for user input.
      * @return void.
      */
     private static void removeData(Scanner scan) {
         //TODO: remove data with query command
+        System.out.println("placeholder removeData");
+
+        //after method finished, get user input
+        getUserInput();
     }
 
 
     /**
-     * Method to exit program
+     * Method to exit program and close the scanner.
      *
      * @param scan : scanner to close
      * @return void.
@@ -83,7 +99,7 @@ public class Application {
     }
 
     /**
-     * Method to get input for application via CLI.  Method passed arguments based on
+     * Method to get input for application via CLI.  Method show main menu and passes arguments based on user input.
      * @return void.
      * */
     private static void getUserInput() {
@@ -105,7 +121,7 @@ public class Application {
 
                 String in = scan.next();
 
-                if (in.equalsIgnoreCase("1")) {
+                if (in.equals("1")) {
 
                     writeQuery(scan);
                 } else if (in.equals("2")) {
@@ -123,14 +139,10 @@ public class Application {
                     break;
                 } else {
 
-                    System.out.println("Invalid user input.  Please choose a valid option");
+                    System.out.println("Invalid user input.  Please choose a valid option.\n");
                     getUserInput();
                 }
             }
-
-
-            // TODO: should be in a while loop or similar while user input != "exit program"
-
         } catch (Exception ex) {
             System.out.println("There was a problem getting user input.");
             ex.printStackTrace();
@@ -138,9 +150,9 @@ public class Application {
     }
 
     /**
-     * Entry point of the program.
+     * Entry point of the program. Loads database and passes to get user input; closes all connections on exit.
      *
-     * @param args : args specified by user, if any.
+     * @param args : args specified by user, includes sql server url, username, password, and jdbc driver.
      * @return void.
      */
     public static void main(String[] args) {
@@ -154,7 +166,6 @@ public class Application {
 
         String _url = args[0];
 
-        
         try {
             // load the JDBC Driver
             Class.forName(args[3]);
@@ -173,6 +184,7 @@ public class Application {
             getUserInput();
         } catch (Exception e) {
             e.printStackTrace();
+        // close everything related to sql server
         } finally {
             try {
                 if (rs != null) {
