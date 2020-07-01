@@ -187,13 +187,13 @@ public class Application {
     private static void selectPreset(Scanner scan) {
         //select presets
 
-        String query1 ="SELECT PL2ATFORM.Platform_Name FROM PLATFORM, PLATFORM_TYPE WHERE PLATFORM.Platform_Name = PLATFORM_TYPE.Platform_Name";
+        String query1 ="SELECT PLATFORM.Platform_Name FROM PLATFORM, PLATFORM_TYPE WHERE PLATFORM.Platform_Name = PLATFORM_TYPE.Platform_Name";
 
         String query2 = "SELECT distinct TITLE.Title_Name, TITLE.Description, TITLE.ESRB_Rating, PLATFORM.Platform_Name" +
                       "FROM TITLE, PLATFORM ORDER BY TITLE.Title_Name ASC";
 
         String query3 = "SELECT ACCOUNT.Member_ID, CUSTOMER.First_Name, CUSTOMER.Last_Name, CUSTOMER.Birthdate, " +
-                        "ACCOUNT.Credit_Card_Number, ACCOUNT.Subscription, ACCOUNT.Email, PLATFORM.Platform_Name" +
+                        "ACCOUNT.Credit_Card_Number, ACCOUNT.Subscrip2tion, ACCOUNT.Email, PLATFORM.Platform_Name" +
                         "FROM ACCOUNT, PLATFORM, CUSTOMER WHERE ACCOUNT.Member_ID = CUSTOMER.Member_ID ORDER BY ACCOUNT.Member_ID ASC";
 
         String query4 ="SELECT USER_LIBRARY.UPC, USER_LIBRARY.Member_ID, USER_LIBRARY.Date_Added, USER_LIBRARY.Date_Removed, " +

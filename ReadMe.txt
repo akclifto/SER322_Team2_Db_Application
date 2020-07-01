@@ -14,6 +14,9 @@ called "VGS", then select the database and show available tables:
 This can be execute from the mySql server client command line with the following:
     "source C://<path-to-file-location>/VGS_Team2_Init.sql;"
 
+To launch application from command line can be done similar to the following example:
+
+    java -cp lib/mysql-connector-java-8.0.20.jar;bin vgs.Application "jdbc:mysql://localhost/VGS?autoReconnect=true&useSSL=false" <username> <password> com.mysql.cj.jdbc.Driver
 
 
 Video Presentation link: 
