@@ -100,8 +100,9 @@ public class Application {
 
     /**
      * Method to get input for application via CLI.  Method show main menu and passes arguments based on user input.
+     *
      * @return void.
-     * */
+     */
     private static void getUserInput() {
 
         //show menu options
@@ -184,7 +185,7 @@ public class Application {
             getUserInput();
         } catch (Exception e) {
             e.printStackTrace();
-        // close everything related to sql server
+            // close everything related to sql server
         } finally {
             try {
                 if (rs != null) {
