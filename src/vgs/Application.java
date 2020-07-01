@@ -176,6 +176,10 @@ public class Application {
                 se.printStackTrace();
             }
         }
+
+        //after method finished, get user input
+        System.out.println("\n");
+        getUserInput();
     }
 
     /**
@@ -186,20 +190,22 @@ public class Application {
      */
     private static void selectPreset(Scanner scan) {
         //select presets
+        //TODO: issue with query 4, throws error.
 
         String query1 ="SELECT PLATFORM.Platform_Name FROM PLATFORM, PLATFORM_TYPE WHERE PLATFORM.Platform_Name = PLATFORM_TYPE.Platform_Name";
 
-        String query2 = "SELECT distinct TITLE.Title_Name, TITLE.Description, TITLE.ESRB_Rating, PLATFORM.Platform_Name" +
-                      "FROM TITLE, PLATFORM ORDER BY TITLE.Title_Name ASC";
+        String query2 = "SELECT TITLE.Title_Name, TITLE.Description, TITLE.ESRB_Rating, PLATFORM.Platform_Name " +
+                        "FROM TITLE, PLATFORM ORDER BY TITLE.Title_Name ASC";
 
         String query3 = "SELECT ACCOUNT.Member_ID, CUSTOMER.First_Name, CUSTOMER.Last_Name, CUSTOMER.Birthdate, " +
-                        "ACCOUNT.Credit_Card_Number, ACCOUNT.Subscrip2tion, ACCOUNT.Email, PLATFORM.Platform_Name" +
-                        "FROM ACCOUNT, PLATFORM, CUSTOMER WHERE ACCOUNT.Member_ID = CUSTOMER.Member_ID ORDER BY ACCOUNT.Member_ID ASC";
+                        "ACCOUNT.Credit_Card_Number, ACCOUNT.Subscription, ACCOUNT.Email, PLATFORM.Platform_Name " +
+                        "FROM ACCOUNT, PLATFORM, CUSTOMER WHERE ACCOUNT.Member_ID = CUSTOMER.Member_ID " +
+                        "ORDER BY ACCOUNT.Member_ID ASC";
 
-        String query4 ="SELECT USER_LIBRARY.UPC, USER_LIBRARY.Member_ID, USER_LIBRARY.Date_Added, USER_LIBRARY.Date_Removed, " +
-                        "TITLE.Title_Name, TITLE.Description, TITLE.Year_Of_Release, TITLE.ESRB_Rating, TITLE.Metacritic_Rating, " +
-                        "TITLE.Genre_Name, TITLE.Genre_Description, PLATFORM.Platform_Name FROM USER_LIBRARY, PLATFORM, TITLE " +
-                        "WHERE USER_LIBRARY.UPC = TITLE.UPC AND PLATFORM.UPC = TITLE.UPC";
+        String query4 = "SELECT USER_LIBRARY.UPC, USER_LIBRARY.Member_ID, USER_LIBRARY.Date_Added, USER_LIBRARY.Date_Removed, " +
+                        "TITLE.Title_Na2me, TITLE.Description, TITLE.Year_Of_Release, TITLE.ESRB_Rating, TITLE.Metacritic_Rating, " +
+                        "TITLE.Genre_Name, TITLE.Genre_Description, PLATFORM.Platform_Name " +
+                        "FROM USER_LIBRARY, PLATFORM, TITLE WHERE USER_LIBRARY.UPC = TITLE.UPC AND PLATFORM.UPC = TITLE.UPC";
 
         String query5 ="SELECT acct.Member_ID, t.Title_Name FROM TITLE t JOIN USER_LIBRARY ul ON ul.UPC = t.UPC " +
                        "JOIN ACCOUNT acct ON acct.Member_ID = ul.Member_ID WHERE acct.Member_ID = 'TheCrow'";
@@ -323,22 +329,22 @@ public class Application {
         {
             exc.printStackTrace();
         }
-        finally {  // ALWAYS clean up DB resources
-            try {
-                if (rs != null)
-                    rs.close();
-                if (stmt != null)
-                    stmt.close();
-                if (conn != null)
-                    conn.close();
-            }
-            catch (SQLException se) {
-                se.printStackTrace();
-            }
-        }
+//        finally {  // ALWAYS clean up DB resources
+//            try {
+//                if (rs != null)
+//                    rs.close();
+//                if (stmt != null)
+//                    stmt.close();
+//                if (conn != null)
+//                    conn.close();
+//            }
+//            catch (SQLException se) {
+//                se.printStackTrace();
+//            }
+//        }
 
-
-
+        //after method finished, get user input
+        getUserInput();
     }
 
     /**
