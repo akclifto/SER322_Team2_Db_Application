@@ -7,7 +7,7 @@
 	Robert Ibarra (rnibarra@asu.edu)
 
 Provided is a script to run in a sql server of your choice to set
-up the VGS database.
+up the VGS database and dummy data
 
 Run this before starting the application. 
 
