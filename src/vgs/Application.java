@@ -204,7 +204,7 @@ public class Application {
                         "ORDER BY ACCOUNT.Member_ID ASC";
 
         String query4 = "SELECT USER_LIBRARY.UPC, USER_LIBRARY.Member_ID, USER_LIBRARY.Date_Added, USER_LIBRARY.Date_Removed, " +
-                        "TITLE.Title_Na2me, TITLE.Description, TITLE.Year_Of_Release, TITLE.ESRB_Rating, TITLE.Metacritic_Rating, " +
+                        "TITLE.Title_Name, TITLE.Description, TITLE.Year_Of_Release, TITLE.ESRB_Rating, TITLE.Metacritic_Rating, " +
                         "TITLE.Genre_Name, TITLE.Genre_Description, PLATFORM.Platform_Name " +
                         "FROM USER_LIBRARY, PLATFORM, TITLE WHERE USER_LIBRARY.UPC = TITLE.UPC AND PLATFORM.UPC = TITLE.UPC";
 
@@ -219,7 +219,7 @@ public class Application {
         int selection;
 
         do {
-        System.out.println("Please enter the integer associated with a preset Query");
+        System.out.println("Please enter the integer associated with a presetQuery");
         System.out.println("1. " + query1);
         System.out.println("2. " + query2);
         System.out.println("3. " + query3);
