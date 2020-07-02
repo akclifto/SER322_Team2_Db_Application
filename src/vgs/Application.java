@@ -162,19 +162,19 @@ public class Application {
         {
             exc.printStackTrace();
         }
-        finally {  // ALWAYS clean up DB resources
-            try {
-                if (rs != null)
-                    rs.close();
-                if (stmt != null)
-                    stmt.close();
-                if (conn != null)
-                    conn.close();
-            }
-            catch (SQLException se) {
-                se.printStackTrace();
-            }
-        }
+//        finally {  // ALWAYS clean up DB resources
+//            try {
+//                if (rs != null)
+//                    rs.close();
+//                if (stmt != null)
+//                    stmt.close();
+//                if (conn != null)
+//                    conn.close();
+//            }
+//            catch (SQLException se) {
+//                se.printStackTrace();
+//            }
+//        }
 
         //after method finished, get user input
         System.out.println("\n");
@@ -399,7 +399,7 @@ public class Application {
         System.out.println("1 - Write your own query");
         System.out.println("2 - Use preset queries provided with application");
         System.out.println("3 - Insert data into database");
-        System.out.println("4 - Remove data from database"); 
+        System.out.println("4 - Remove data from database");
         System.out.println("Q - Exit Program\n");
         System.out.print("Please select an option: ");
 

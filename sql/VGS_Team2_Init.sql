@@ -16,7 +16,7 @@ This script will:
 	- Create all tables, inserts, and altertable
     - Show tables and describe each for easier navigation when testing queries in the VGS application.
 	
-@author Adam Clifton (akclifto@asu.edu)
+@author Project Team 2
 @version 2020.06.30
 
 */
@@ -157,7 +157,7 @@ CREATE TABLE LOGS_INTO
             ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
+-- inserts
 INSERT INTO GENRE
     (Genre_Name, Genre_Description)
 VALUES ('Adventure', 'Solve puzzles by interacting with characters and the environment'),
@@ -248,7 +248,7 @@ ALTER TABLE PLATFORM
 
 -- show tables for check
 SHOW TABLES;
-
+-- describe each table
 \! echo "ACCOUNT TABLE:";
 DESCRIBE ACCOUNT;
 \! echo "CUSTOMER TABLE:";
