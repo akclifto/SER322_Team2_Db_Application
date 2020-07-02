@@ -288,18 +288,18 @@ public class Application {
                     // Setup a query
                     rs = stmt.executeQuery(query4);
                     while (rs.next()) {
-                        System.out.print(rs.getLong(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
-                        System.out.print(rs.getDate(3)+ "\t");
-                        System.out.print(rs.getDate(4)+ "\t");
-                        System.out.print(rs.getString(5) + "\t");
-                        System.out.print(rs.getString(6) + "\t");
-                        System.out.print(rs.getDate(7)+ "\t");
-                        System.out.print(rs.getString(8) + "\t");
-                        System.out.print(rs.getDouble(9) + "\t");
-                        System.out.print(rs.getString(10) + "\t");
-                        System.out.print(rs.getString(11) + "\t");
-                        System.out.print(rs.getString(12) + "\t");
+                        System.out.print(rs.getLong("UPC") + "\t");
+                        System.out.print(rs.getString("Member_ID") + "\t");
+                        System.out.print(rs.getDate("Date_Added")+ "\t");
+                        System.out.print(rs.getDate("Date_Removed")+ "\t");
+                        System.out.print(rs.getString("Title_Name") + "\t");
+                        System.out.print(rs.getString("Description") + "\t");
+                        System.out.print(rs.getInt("Year_Of_Release")+ "\t");
+                        System.out.print(rs.getString("ESRB_Rating") + "\t");
+                        System.out.print(rs.getDouble("Metacritic_Rating") + "\t");
+                        System.out.print(rs.getString("Genre_Name") + "\t");
+                        System.out.print(rs.getString("Genre_Description") + "\t");
+                        System.out.print(rs.getString("Platform_Name") + "\t");
                     }
                     break;
 
