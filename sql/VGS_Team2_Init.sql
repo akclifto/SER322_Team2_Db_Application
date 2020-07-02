@@ -7,13 +7,14 @@
 	Robert Ibarra (rnibarra@asu.edu)
 
 Provided is a script to run in a sql server of your choice to set
-up the VGS database and dummy data
+up the VGS database and dummy data.
 
 Run this before starting the application. 
 
 This script will:
-	set up a new database called VGS
-	Create all tables, inserts, and altertable
+	- Set up a new database called VGS
+	- Create all tables, inserts, and altertable
+    - Show tables and describe each for easier navigation when testing queries in the VGS application.
 	
 @author Adam Clifton (akclifto@asu.edu)
 @version 2020.06.30
@@ -247,5 +248,16 @@ ALTER TABLE PLATFORM
 
 -- show tables for check
 SHOW TABLES;
+
+DESCRIBE ACCOUNT;
+DESCRIBE CUSTOMER;
+DESCRIBE GENRE;
+DESCRIBE LOGS_INTO;
+DESCRIBE PLATFORM;
+DESCRIBE PLATFORM_TYPE;
+DESCRIBE SAVE_GAME_FILE;
+DESCRIBE TITLE;
+DESCRIBE USER_LIBRARY;
+
 
 
