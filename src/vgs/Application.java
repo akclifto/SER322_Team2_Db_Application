@@ -23,7 +23,6 @@ import java.util.Scanner;
  */
 public class Application {
 
-    //TODO:
     private static ResultSet rs = null;
     private static Statement stmt = null;
     private static Connection conn = null;
@@ -400,7 +399,7 @@ public class Application {
         System.out.println("1 - Write your own query");
         System.out.println("2 - Use preset queries provided with application");
         System.out.println("3 - Insert data into database");
-        System.out.println("4 - Remove data from database"); //TODO:  maybe do this one?
+        System.out.println("4 - Remove data from database"); 
         System.out.println("Q - Exit Program\n");
         System.out.print("Please select an option: ");
 
@@ -465,7 +464,7 @@ public class Application {
             conn = DriverManager.getConnection(_url, args[1], args[2]);
 
         } catch (ClassNotFoundException | SQLException se) {
-            System.out.println("Error load the JDBC driver and/or connecting to server.");
+            System.out.println("Error loading JDBC driver and/or connecting to server.");
             se.printStackTrace();
         }
         System.out.println("done!\n");
