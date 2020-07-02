@@ -7,7 +7,7 @@
 Please see the included Deliverable 3-Relational Model.jpeg with this submission for the Relation Model Diagram.
 
 Before starting the program, run the below source script in sql server.  This will create and populate a database
-called "VGS", then select the database and show available tables:
+called "VGS", select the database, show its tables, and describe each for easier navigation when testing.
 
 	1 -  VGS_Team2_Init.sql
 
