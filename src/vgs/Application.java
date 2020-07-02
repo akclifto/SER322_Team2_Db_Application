@@ -19,7 +19,7 @@ import java.util.Scanner;
  * @author Robert Ibarra (rnibarra@asu.edu)
  * <p>
  * SER 322 Project Team 2 Deliverable 4
- * @version 2020.06.29
+ * @version 2020.07-01
  */
 public class Application {
 
