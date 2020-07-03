@@ -28,49 +28,62 @@ public class Application {
     private static Connection conn = null;
 
     /**
-     * Helper Method to execute writeQuery method.  This method help writeQuery execute users queries
-     * back-to-back
+     * Helper Method to execute writeQuery method.  This method helps writeQuery execute users queries
+     * back-to-back.
      *
      * @param scan : scanner for user input.
      * @return void.
      * */
     private static void executeWriteQuery(Scanner scan) {
 
-        PreparedStatement pStmt = null;
         String query = null;
-
-        System.out.println("To exit to Main Menu, press \"Q\".\n");
-        System.out.println("Write a new query:");
+        PreparedStatement pStmt = null;
 
         try {
-
-            if (scan.nextLine() != null) {
-                query = scan.nextLine();
-                //check if user exits the method to main menu
-                if (query.equalsIgnoreCase("Q")) {
-                    return;
+            //do-while to execute queries and print results.
+            do {
+                System.out.println("To exit to Main Menu, press \"Q\".\n");
+                System.out.println("Write a new query:");
+                
+                if (scan.nextLine() != null) {
+                    query = scan.nextLine();
+                    //check if user exits the method to main menu
+                    if (query.equalsIgnoreCase("Q")) {
+                        System.out.println("Returning to Main Menu.");
+                        break;
+                    }
+                    System.out.println("User query: " + query);
                 }
-                System.out.println("User query: " + query);
-            }
-            //check for empty query
-            if (query == null || query.equals("")) {
-                System.out.println("Query statement is empty!");
-                return;
-            }
-            //prepare the statement and execute
-            pStmt = conn.prepareStatement(query);
-            rs = pStmt.executeQuery();
-            System.out.println("Printing out result of the query!");
+                //check for empty query
+                if (query == null || query.equals("")) {
+                    System.out.println("Query statement is empty!");
+                    System.out.println("Return to Main Menu.");
+                    break;
+                }
+                //prepare the statement and execute
+                pStmt = conn.prepareStatement(query);
+                rs = pStmt.executeQuery();
+                System.out.println("Printing out result of the query!");
 
                 //TODO:  print out results
+
+
+            } while (!query.equalsIgnoreCase("Q"));
 
         } catch (SQLException se) {
             System.out.println("There was a problem preparing the statement.");
             se.printStackTrace();
+            //close the prepared statement
+        } finally {
+            try {
+                if (pStmt != null) {
+                    pStmt.close();
+                    System.out.println("Prepared Statement closed!");
+                }
+            } catch (SQLException ps) {
+                ps.printStackTrace();
+            }
         }
-
-        executeWriteQuery(scan);
-
     }
 
 
