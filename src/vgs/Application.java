@@ -27,140 +27,166 @@ public class Application {
     private static Connection conn = null;
 
     /**
-     * Method to run manual queries on database.
+     * Method to run manual queries on database.  The user will type a manual query, and it will be
+     * executed on the given databse.
      *
      * @param scan : scanner for user input.
      * @return void.
      */
     private static void writeQuery(Scanner scan) {
-        //manual queries
+
         String query;
-        int selection;
+        System.out.println("\n----------------------");
+        System.out.println("WRITE YOU OWN QUERY");
+        System.out.println("----------------------");
+        System.out.println("Here, you can manually write your own query to access information from the "
+                + "VGS database.");
+        System.out.println("To exit writing your own query, press \"Q\"\n");
+        System.out.println("Write your query:");
 
-        do {
-            System.out.println("Please enter the integer associated with the table that you want to query:");
-            System.out.println("1. Genre, 2. Title, 3. Platform, 4. Platform Type, 5. Account, 6. Customer, 7. User_Library");
-            System.out.println("8. Save_Game_File, 9. Logs_Into");
-            while (!scan.hasNextInt()) {
-                System.out.println("That's not a number!");
-                scan.next();
+        while(scan.nextLine() != null) {
+
+            query = scan.nextLine();
+            if(query.equalsIgnoreCase("Q")) {
+                getUserInput();
             }
-            selection = scan.nextInt();
-        }while(selection < 1 || selection > 9);
-        System.out.println("Selection was successful!");
+            System.out.println(query);
 
-        System.out.println("Please enter a SQL Query: ");
-        // get user input
-        query = scan.nextLine();
+            System.out.println("write another query:");
+            query = scan.nextLine();
+            System.out.println(query);
 
-        try {
-            // Create a statement
-            stmt = conn.createStatement();
 
-            // Setup a query
-            rs = stmt.executeQuery(query);
-
-            // Display the results
-            switch (selection) {
-                case 1:
-                    while (rs.next()) {
-                        System.out.print(rs.getString(1) + "\t");
-                        System.out.println(rs.getString(2));
-                    }
-                    break;
-
-                case 2:
-                    while (rs.next()) {
-                        System.out.print(rs.getLong(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
-                        System.out.print(rs.getString(3) + "\t");
-                        System.out.print(rs.getInt(4) + "\t");
-                        System.out.print(rs.getString(5) + "\t");
-                        System.out.print(rs.getDouble(6) + "\t");
-                        System.out.print(rs.getString(7) + "\t");
-                        System.out.println(rs.getString(8));
-
-                    }
-                    break;
-
-                case 3:
-                    while (rs.next()) {
-                        System.out.print(rs.getLong(1) + "\t");
-                        System.out.print(rs.getLong(2)+ "\t");
-                        System.out.println(rs.getString(3));
-                    }
-                    break;
-
-                case 4:
-                    while (rs.next()) {
-                        System.out.print(rs.getString(1) + "\t");
-                        System.out.println(rs.getLong(2));
-                    }
-                    break;
-
-                case 5:
-                    while (rs.next()) {
-                        System.out.print(rs.getString(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
-                        System.out.print(rs.getLong(3)+ "\t");
-                        System.out.print(rs.getBoolean(4) + "\t");
-                        System.out.print(rs.getString(5) + "\t");
-                        System.out.println(rs.getLong(6));
-
-                    }
-                    break;
-
-                case 6:
-                    while (rs.next()) {
-                        System.out.print(rs.getString(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
-                        System.out.print(rs.getString(3) + "\t");
-                        System.out.print(rs.getString(4) + "\t");
-                        System.out.print(rs.getDate(5) + "\t");
-                        System.out.print(rs.getString(6) + "\t");
-                        System.out.println(rs.getString(7));
-
-                    }
-                    break;
-
-                case 7:
-                    while (rs.next()) {
-                        System.out.print(rs.getLong(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
-                        System.out.print(rs.getString(3) + "\t");
-                        System.out.print(rs.getDate(4) + "\t");
-                        System.out.println(rs.getDate(5));
-
-                    }
-                    break;
-
-                case 8:
-                    while (rs.next()) {
-                        System.out.print(rs.getLong(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
-                        System.out.print(rs.getString(3) + "\t");
-                        System.out.print(rs.getTime(4) + "\t");
-                        System.out.print(rs.getTime(5) + "\t");
-                        System.out.println(rs.getLong(6));
-
-                    }
-                    break;
-
-                case 9:
-                    while (rs.next()) {
-                        System.out.print(rs.getString(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
-                        System.out.println(rs.getString(3));
-
-                    }
-                    break;
-
-            }
         }
-        catch (Exception exc)
-        {
-            exc.printStackTrace();
-        }
+
+
+
+//        int selection;
+//
+//        do {
+//            System.out.println("Please enter the integer associated with the table that you want to query:");
+//            System.out.println("1. Genre, 2. Title, 3. Platform, 4. Platform Type, 5. Account, 6. Customer, 7. User_Library");
+//            System.out.println("8. Save_Game_File, 9. Logs_Into");
+//            while (!scan.hasNextInt()) {
+//                System.out.println("That's not a number!");
+//                scan.next();
+//            }
+//            selection = scan.nextInt();
+//        }while(selection < 1 || selection > 9);
+//        System.out.println("Selection was successful!");
+//
+//        System.out.println("Please enter a SQL Query: ");
+//        // get user input
+//        query = scan.nextLine();
+//
+//        try {
+//            // Create a statement
+//            stmt = conn.createStatement();
+//
+//            // Setup a query
+//            rs = stmt.executeQuery(query);
+//
+//            // Display the results
+//            switch (selection) {
+//                case 1:
+//                    while (rs.next()) {
+//                        System.out.print(rs.getString(1) + "\t");
+//                        System.out.println(rs.getString(2));
+//                    }
+//                    break;
+//
+//                case 2:
+//                    while (rs.next()) {
+//                        System.out.print(rs.getLong(1) + "\t");
+//                        System.out.print(rs.getString(2) + "\t");
+//                        System.out.print(rs.getString(3) + "\t");
+//                        System.out.print(rs.getInt(4) + "\t");
+//                        System.out.print(rs.getString(5) + "\t");
+//                        System.out.print(rs.getDouble(6) + "\t");
+//                        System.out.print(rs.getString(7) + "\t");
+//                        System.out.println(rs.getString(8));
+//
+//                    }
+//                    break;
+//
+//                case 3:
+//                    while (rs.next()) {
+//                        System.out.print(rs.getLong(1) + "\t");
+//                        System.out.print(rs.getLong(2)+ "\t");
+//                        System.out.println(rs.getString(3));
+//                    }
+//                    break;
+//
+//                case 4:
+//                    while (rs.next()) {
+//                        System.out.print(rs.getString(1) + "\t");
+//                        System.out.println(rs.getLong(2));
+//                    }
+//                    break;
+//
+//                case 5:
+//                    while (rs.next()) {
+//                        System.out.print(rs.getString(1) + "\t");
+//                        System.out.print(rs.getString(2) + "\t");
+//                        System.out.print(rs.getLong(3)+ "\t");
+//                        System.out.print(rs.getBoolean(4) + "\t");
+//                        System.out.print(rs.getString(5) + "\t");
+//                        System.out.println(rs.getLong(6));
+//
+//                    }
+//                    break;
+//
+//                case 6:
+//                    while (rs.next()) {
+//                        System.out.print(rs.getString(1) + "\t");
+//                        System.out.print(rs.getString(2) + "\t");
+//                        System.out.print(rs.getString(3) + "\t");
+//                        System.out.print(rs.getString(4) + "\t");
+//                        System.out.print(rs.getDate(5) + "\t");
+//                        System.out.print(rs.getString(6) + "\t");
+//                        System.out.println(rs.getString(7));
+//
+//                    }
+//                    break;
+//
+//                case 7:
+//                    while (rs.next()) {
+//                        System.out.print(rs.getLong(1) + "\t");
+//                        System.out.print(rs.getString(2) + "\t");
+//                        System.out.print(rs.getString(3) + "\t");
+//                        System.out.print(rs.getDate(4) + "\t");
+//                        System.out.println(rs.getDate(5));
+//
+//                    }
+//                    break;
+//
+//                case 8:
+//                    while (rs.next()) {
+//                        System.out.print(rs.getLong(1) + "\t");
+//                        System.out.print(rs.getString(2) + "\t");
+//                        System.out.print(rs.getString(3) + "\t");
+//                        System.out.print(rs.getTime(4) + "\t");
+//                        System.out.print(rs.getTime(5) + "\t");
+//                        System.out.println(rs.getLong(6));
+//
+//                    }
+//                    break;
+//
+//                case 9:
+//                    while (rs.next()) {
+//                        System.out.print(rs.getString(1) + "\t");
+//                        System.out.print(rs.getString(2) + "\t");
+//                        System.out.println(rs.getString(3));
+//
+//                    }
+//                    break;
+//
+//            }
+//        }
+//        catch (Exception exc)
+//        {
+//            exc.printStackTrace();
+//        }
 //        finally {  // ALWAYS clean up DB resources
 //            try {
 //                if (rs != null)
@@ -400,7 +426,7 @@ public class Application {
         System.out.println("3 - Insert data into database");
         System.out.println("4 - Remove data from database");
         System.out.println("Q - Exit Program\n");
-        System.out.print("Please select an option: ");
+        System.out.print("Please select an option (1, 2, 3, 4, Q): ");
 
         //set scanner and get input
         try (Scanner scan = new Scanner(System.in)) {

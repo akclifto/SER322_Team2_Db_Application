@@ -6,7 +6,7 @@
 	Ivan Fernandez (iafernan@asu.edu)
 	Robert Ibarra (rnibarra@asu.edu)
 
-Provided is a script to run in a sql server of your choice to set
+Provided is a script to run in a mySql server of your choice to set
 up the VGS database and dummy data.
 
 Run this before starting the application. 
