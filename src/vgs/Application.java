@@ -53,7 +53,7 @@ public class Application {
             //do-while to execute queries and print results.
             do {
                 System.out.println("To exit to Main Menu, press \"Q\".");
-                System.out.println("Write a new query:");
+                System.out.println("Write a new query (do not include \";\" at the end of the query):");
 
                 if (scan.nextLine() != null) {
                     query = scan.nextLine();

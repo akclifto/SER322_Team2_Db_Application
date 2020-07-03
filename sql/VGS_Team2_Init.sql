@@ -19,10 +19,12 @@ This script will:
 @version 2020.06.30
 
 */
+\! echo "Creating VGS database and selecting...";
 CREATE DATABASE VGS;
 SHOW DATABASES;
 USE VGS;
 
+\! echo "Creating tables...";
 -- Genre (Genre_Name, Genre_Description)
 CREATE TABLE GENRE
 (
@@ -156,6 +158,7 @@ CREATE TABLE LOGS_INTO
             ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+\! echo "Inserting dummy data into tables...";
 -- inserts
 INSERT INTO GENRE
     (Genre_Name, Genre_Description)
@@ -228,6 +231,7 @@ ALTER TABLE CUSTOMER
         FOREIGN KEY (Account_PW, Member_ID) REFERENCES ACCOUNT (Account_PW, Member_ID)
             ON DELETE CASCADE ON UPDATE CASCADE;
 
+\! echo "altering tables with foreign keys...";
 -- alter table account to add FK Email
 ALTER TABLE ACCOUNT
     ADD CONSTRAINT EMAILFK
@@ -245,6 +249,7 @@ ALTER TABLE PLATFORM
         FOREIGN KEY (UPC) REFERENCES TITLE (UPC)
             ON DELETE CASCADE ON UPDATE CASCADE;
 
+\! echo "Done. Displaying:";
 -- show tables for check
 SHOW TABLES;
 -- describe each table
