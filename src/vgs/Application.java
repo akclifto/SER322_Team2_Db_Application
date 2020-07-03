@@ -1,7 +1,12 @@
 package vgs;
 
-import java.security.spec.RSAOtherPrimeInfo;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSetMetaData;
 import java.util.Scanner;
 
 /**
