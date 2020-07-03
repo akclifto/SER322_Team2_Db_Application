@@ -1,12 +1,7 @@
 package vgs;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSetMetaData;
+import java.security.spec.RSAOtherPrimeInfo;
+import java.sql.*;
 import java.util.Scanner;
 
 /**
@@ -40,7 +35,6 @@ public class Application {
     private static void writeQuery(Scanner scan) {
 
         //TODO:  bug on second iteration of loop, something with scan.nextLine() not reading user input first entry, but will read second.
-        String query = null;
         PreparedStatement pStmt = null;
 
         System.out.println("\n----------------------");
@@ -50,9 +44,10 @@ public class Application {
                 + "VGS database.");
 
         try {
+            String query = null;
             //do-while to execute queries and print results.
             do {
-                System.out.println("To exit to Main Menu, press \"Q\".\n");
+                System.out.println("To exit to Main Menu, press \"Q\".");
                 System.out.println("Write a new query:");
 
                 if (scan.nextLine() != null) {
@@ -62,13 +57,13 @@ public class Application {
                         System.out.println("Returning to Main Menu.");
                         break;
                     }
-                    System.out.println("User query: " + query);
                 }
                 //check for empty query
                 if (query == null || query.equals("")) {
                     System.out.println("Query statement is empty!  Returning to Main Menu.");
                     break;
                 }
+                System.out.println("Executing user query: " + query + ";\n");
                 //prepare the statement and execute
                 pStmt = conn.prepareStatement(query);
                 rs = pStmt.executeQuery();
@@ -79,8 +74,8 @@ public class Application {
             } while (!query.equalsIgnoreCase("Q"));
 
         } catch (SQLException se) {
-            System.out.println("There was a problem preparing the statement.");
-            se.printStackTrace();
+            System.out.println("Improper Query statement.  Please check syntax and database tables."
+                    + "  Returning to Main Menu.");
             //close the prepared statement
         } finally {
             try {
@@ -116,20 +111,38 @@ public class Application {
 //            System.out.println("Debug: number of columns: " + colCount);
             //print out column labels
             for (int i = 1; i <= colCount; i++) {
-                System.out.format("%-30s", rsmd.getColumnLabel(i));
+
+                String label = rsmd.getColumnLabel(i);
+                if (label.equalsIgnoreCase("Genre_Description")) {
+                    System.out.format("%-66s", rsmd.getColumnLabel(i));
+                } else if (label.equalsIgnoreCase("Description")) {
+                    System.out.format("%-97s", rsmd.getColumnLabel(i));
+                } else {
+                    System.out.format("%-26s", rsmd.getColumnLabel(i));
+                }
             }
             System.out.println();
             //get the rs data and print out
             while (rs.next()) {
 
                 for (int i = 1; i <= colCount; i++) {
+
                     Object obj = rs.getObject(i);
                     if (obj != null) {
-                        System.out.format("%-30s", rs.getObject(i).toString());
+
+                        String label = rs.getObject(i).toString();
+                        if (label.equalsIgnoreCase("Genre_Description")) {
+                            System.out.format("%-66s", rs.getObject(i).toString());
+                        } else if (label.equalsIgnoreCase("Description")) {
+                            System.out.format("%-97s", rs.getObject(i).toString());
+                        } else {
+                            System.out.format("%-26s", rs.getObject(i).toString());
+                        }
                     }
                 }
                 System.out.println();
             }
+            System.out.println();
         } catch (SQLException se) {
             System.out.println("There was problem displaying query results.");
             se.printStackTrace();
