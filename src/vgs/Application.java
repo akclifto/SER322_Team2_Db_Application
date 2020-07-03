@@ -14,6 +14,7 @@ import java.util.Scanner;
  * load the VGS database and allow the user to run various related actions on the given database, implemented with
  * JDBC.
  * <p>
+ *
  * @author Adam Clifton (akclifto@asu.edu)
  * @author Anne Landrum (aelandru@asu.edu)
  * @author Ivan Fernandez (iafernan@asu.edu)
@@ -106,12 +107,12 @@ public class Application {
      *
      * @param rs : Result set from database query
      * @return void.
-     * */
-    private static void displayQueryResults(ResultSet rs){
+     */
+    private static void displayQueryResults(ResultSet rs) {
 
         //TODO: format print for all display types (game description long, messes up print formatting).
 
-        try{
+        try {
             //get object of rs meta data
             ResultSetMetaData rsmd = rs.getMetaData();
             //get number of columns
@@ -123,11 +124,11 @@ public class Application {
             }
             System.out.println();
             //get the rs data
-            while(rs.next()) {
+            while (rs.next()) {
 
-                for(int i = 1; i <= colCount; i++) {
+                for (int i = 1; i <= colCount; i++) {
                     Object obj = rs.getObject(i);
-                    if(obj != null) {
+                    if (obj != null) {
                         System.out.format("%-30s", rs.getObject(i).toString());
                     }
                 }
@@ -139,6 +140,7 @@ public class Application {
         }
     }
 
+
     /**
      * Method to run select.sql presets.
      *
@@ -147,49 +149,48 @@ public class Application {
      */
     private static void selectPreset(Scanner scan) {
         //select presets
-        //TODO: issue with query 4, throws error.
         //TODO: will need to pretty print output.
 
-        String query1 ="SELECT PLATFORM.Platform_Name FROM PLATFORM, PLATFORM_TYPE WHERE PLATFORM.Platform_Name = PLATFORM_TYPE.Platform_Name";
+        String query1 = "SELECT PLATFORM.Platform_Name FROM PLATFORM, PLATFORM_TYPE WHERE PLATFORM.Platform_Name = PLATFORM_TYPE.Platform_Name";
 
         String query2 = "SELECT TITLE.Title_Name, TITLE.Description, TITLE.ESRB_Rating, PLATFORM.Platform_Name " +
-                        "FROM TITLE, PLATFORM ORDER BY TITLE.Title_Name ASC";
+                "FROM TITLE, PLATFORM ORDER BY TITLE.Title_Name ASC";
 
         String query3 = "SELECT ACCOUNT.Member_ID, CUSTOMER.First_Name, CUSTOMER.Last_Name, CUSTOMER.Birthdate, " +
-                        "ACCOUNT.Credit_Card_Number, ACCOUNT.Subscription, ACCOUNT.Email, PLATFORM.Platform_Name " +
-                        "FROM ACCOUNT, PLATFORM, CUSTOMER WHERE ACCOUNT.Member_ID = CUSTOMER.Member_ID " +
-                        "ORDER BY ACCOUNT.Member_ID ASC";
+                "ACCOUNT.Credit_Card_Number, ACCOUNT.Subscription, ACCOUNT.Email, PLATFORM.Platform_Name " +
+                "FROM ACCOUNT, PLATFORM, CUSTOMER WHERE ACCOUNT.Member_ID = CUSTOMER.Member_ID " +
+                "ORDER BY ACCOUNT.Member_ID ASC";
 
         String query4 = "SELECT USER_LIBRARY.UPC, USER_LIBRARY.Member_ID, USER_LIBRARY.Date_Added, USER_LIBRARY.Date_Removed, " +
-                        "TITLE.Title_Name, TITLE.Description, TITLE.Year_Of_Release, TITLE.ESRB_Rating, TITLE.Metacritic_Rating, " +
-                        "TITLE.Genre_Name, TITLE.Genre_Description, PLATFORM.Platform_Name " +
-                        "FROM USER_LIBRARY, PLATFORM, TITLE WHERE USER_LIBRARY.UPC = TITLE.UPC AND PLATFORM.UPC = TITLE.UPC";
+                "TITLE.Title_Name, TITLE.Description, TITLE.Year_Of_Release, TITLE.ESRB_Rating, TITLE.Metacritic_Rating, " +
+                "TITLE.Genre_Name, TITLE.Genre_Description, PLATFORM.Platform_Name " +
+                "FROM USER_LIBRARY, PLATFORM, TITLE WHERE USER_LIBRARY.UPC = TITLE.UPC AND PLATFORM.UPC = TITLE.UPC";
 
-        String query5 ="SELECT acct.Member_ID, t.Title_Name FROM TITLE t JOIN USER_LIBRARY ul ON ul.UPC = t.UPC " +
-                       "JOIN ACCOUNT acct ON acct.Member_ID = ul.Member_ID WHERE acct.Member_ID = 'TheCrow'";
+        String query5 = "SELECT acct.Member_ID, t.Title_Name FROM TITLE t JOIN USER_LIBRARY ul ON ul.UPC = t.UPC " +
+                "JOIN ACCOUNT acct ON acct.Member_ID = ul.Member_ID WHERE acct.Member_ID = 'TheCrow'";
 
-        String query6 ="SELECT acct.Member_ID, t.Title_Name, p.Platform_Name FROM  TITLE t JOIN USER_LIBRARY ul ON ul.UPC = t.UPC " +
-                       "JOIN SAVE_GAME_FILE sgf ON sgf.UPC = ul.UPC JOIN PLATFORM p ON p.Serial_Number = sgf.Serial_Number  " +
-                        "JOIN ACCOUNT acct ON acct.Member_ID = ul.Member_ID WHERE acct.Member_ID = 'TheDestroyer85' AND t.UPC = sgf.UPC " +
-                        "GROUP BY t.Title_Name, p.Platform_Name";
+        String query6 = "SELECT acct.Member_ID, t.Title_Name, p.Platform_Name FROM  TITLE t JOIN USER_LIBRARY ul ON ul.UPC = t.UPC " +
+                "JOIN SAVE_GAME_FILE sgf ON sgf.UPC = ul.UPC JOIN PLATFORM p ON p.Serial_Number = sgf.Serial_Number  " +
+                "JOIN ACCOUNT acct ON acct.Member_ID = ul.Member_ID WHERE acct.Member_ID = 'TheDestroyer85' AND t.UPC = sgf.UPC " +
+                "GROUP BY t.Title_Name, p.Platform_Name";
 
         int selection;
 
         do {
-        System.out.println("Please enter the integer associated with a presetQuery");
-        System.out.println("1. " + query1);
-        System.out.println("2. " + query2);
-        System.out.println("3. " + query3);
-        System.out.println("4. " + query4);
-        System.out.println("5. " + query5);
-        System.out.println("6. " + query6);
-        //get user input and validate selection
+            System.out.println("Please enter the integer associated with a presetQuery");
+            System.out.println("1. " + query1);
+            System.out.println("2. " + query2);
+            System.out.println("3. " + query3);
+            System.out.println("4. " + query4);
+            System.out.println("5. " + query5);
+            System.out.println("6. " + query6);
+            //get user input and validate selection
             while (!scan.hasNextInt()) {
                 System.out.println("That's not a number!");
                 scan.next();
             }
             selection = scan.nextInt();
-        }while(selection < 1 || selection > 6);
+        } while (selection < 1 || selection > 6);
         System.out.println("Selection was successful!");
 
         try {
@@ -231,13 +232,13 @@ public class Application {
 
                     while (rs.next()) {
                         System.out.print(rs.getString(1) + "\t");
-                        System.out.print(rs.getString(2)+ "\t");
-                        System.out.print(rs.getString(3)+ "\t");
-                        System.out.print(rs.getDate(4)+ "\t");
-                        System.out.print(rs.getLong(5)+ "\t");
-                        System.out.print(rs.getBoolean(6)+ "\t");
-                        System.out.print(rs.getString(7)+ "\t");
-                        System.out.print(rs.getString(8)+ "\t");
+                        System.out.print(rs.getString(2) + "\t");
+                        System.out.print(rs.getString(3) + "\t");
+                        System.out.print(rs.getDate(4) + "\t");
+                        System.out.print(rs.getLong(5) + "\t");
+                        System.out.print(rs.getBoolean(6) + "\t");
+                        System.out.print(rs.getString(7) + "\t");
+                        System.out.print(rs.getString(8) + "\t");
                     }
                     break;
 
@@ -247,11 +248,11 @@ public class Application {
                     while (rs.next()) {
                         System.out.print(rs.getLong("UPC") + "\t");
                         System.out.print(rs.getString("Member_ID") + "\t");
-                        System.out.print(rs.getDate("Date_Added")+ "\t");
-                        System.out.print(rs.getDate("Date_Removed")+ "\t");
+                        System.out.print(rs.getDate("Date_Added") + "\t");
+                        System.out.print(rs.getDate("Date_Removed") + "\t");
                         System.out.print(rs.getString("Title_Name") + "\t");
                         System.out.print(rs.getString("Description") + "\t");
-                        System.out.print(rs.getInt("Year_Of_Release")+ "\t");
+                        System.out.print(rs.getInt("Year_Of_Release") + "\t");
                         System.out.print(rs.getString("ESRB_Rating") + "\t");
                         System.out.print(rs.getDouble("Metacritic_Rating") + "\t");
                         System.out.print(rs.getString("Genre_Name") + "\t");
@@ -282,9 +283,7 @@ public class Application {
                     break;
 
             }
-        }
-        catch (Exception exc)
-        {
+        } catch (Exception exc) {
             exc.printStackTrace();
         }
 //        finally {  // ALWAYS clean up DB resources
@@ -348,8 +347,9 @@ public class Application {
 
     /**
      * Method to get input for application via CLI.  Method show main menu and passes arguments based on user input.
+     *
      * @return void.
-     * */
+     */
     private static void getUserInput() {
 
         //show menu options
@@ -405,7 +405,6 @@ public class Application {
      */
     public static void main(String[] args) {
 
-        //TODO: if using CLI for app can use initial args from cli launch for url, user, pw, driver
 
         System.out.println("---------------------------------------------------");
         System.out.println("*** Welcome to the Video Game Services Database ***");
