@@ -74,10 +74,7 @@ public class Application {
                 rs = pStmt.executeQuery();
 
                 //print results
-                System.out.println("Printing out result of the query!");
-
                 displayQueryResults(rs);
-
 
             } while (!query.equalsIgnoreCase("Q"));
 
@@ -95,7 +92,6 @@ public class Application {
                 ps.printStackTrace();
             }
         }
-
         //after method finished, get user input
         System.out.println("\n");
         getUserInput();
@@ -117,13 +113,13 @@ public class Application {
             ResultSetMetaData rsmd = rs.getMetaData();
             //get number of columns
             int colCount = rsmd.getColumnCount();
-            System.out.println("Debug: number of columns: " + colCount);
+//            System.out.println("Debug: number of columns: " + colCount);
             //print out column labels
             for (int i = 1; i <= colCount; i++) {
                 System.out.format("%-30s", rsmd.getColumnLabel(i));
             }
             System.out.println();
-            //get the rs data
+            //get the rs data and print out
             while (rs.next()) {
 
                 for (int i = 1; i <= colCount; i++) {
@@ -142,7 +138,7 @@ public class Application {
 
 
     /**
-     * Method to run select.sql presets.
+     * Method to run select.sql presets via user input choice.
      *
      * @param scan : scanner for user input.
      * @return void.

@@ -6,10 +6,9 @@
 	Ivan Fernandez (iafernan@asu.edu)
 	Robert Ibarra (rnibarra@asu.edu)
 
-Provided is a script to run in a mySql server of your choice to set
-up the VGS database and dummy data.
+Provided below is a script to run in a mySql server of your choice to set up the VGS database and dummy data.
 
-Run this before starting the application. 
+Run this before starting the application to set up the server database.
 
 This script will:
 	- Set up a new database called VGS
