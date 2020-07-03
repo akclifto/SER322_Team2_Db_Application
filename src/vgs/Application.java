@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSetMetaData;
 import java.util.Scanner;
 
 /**
@@ -37,6 +38,7 @@ public class Application {
      */
     private static void writeQuery(Scanner scan) {
 
+        //TODO:  bug on second iteration of loop, something with scan.nextLine() not reading user input first entry, but will read second.
         String query = null;
         PreparedStatement pStmt = null;
 
@@ -73,7 +75,6 @@ public class Application {
                 //print results
                 System.out.println("Printing out result of the query!");
 
-                //TODO:  print out results
                 displayQueryResults(rs);
 
 
@@ -97,158 +98,45 @@ public class Application {
         //after method finished, get user input
         System.out.println("\n");
         getUserInput();
-
-//        int selection;
-//
-//        do {
-//            System.out.println("Please enter the integer associated with the table that you want to query:");
-//            System.out.println("1. Genre, 2. Title, 3. Platform, 4. Platform Type, 5. Account, 6. Customer, 7. User_Library");
-//            System.out.println("8. Save_Game_File, 9. Logs_Into");
-//            while (!scan.hasNextInt()) {
-//                System.out.println("That's not a number!");
-//                scan.next();
-//            }
-//            selection = scan.nextInt();
-//        }while(selection < 1 || selection > 9);
-//        System.out.println("Selection was successful!");
-//
-//        System.out.println("Please enter a SQL Query: ");
-//        // get user input
-//        query = scan.nextLine();
-//
-//        try {
-//            // Create a statement
-//            stmt = conn.createStatement();
-//
-//            // Setup a query
-//            rs = stmt.executeQuery(query);
-//
-//            // Display the results
-//            switch (selection) {
-//                case 1:
-//                    while (rs.next()) {
-//                        System.out.print(rs.getString(1) + "\t");
-//                        System.out.println(rs.getString(2));
-//                    }
-//                    break;
-//
-//                case 2:
-//                    while (rs.next()) {
-//                        System.out.print(rs.getLong(1) + "\t");
-//                        System.out.print(rs.getString(2) + "\t");
-//                        System.out.print(rs.getString(3) + "\t");
-//                        System.out.print(rs.getInt(4) + "\t");
-//                        System.out.print(rs.getString(5) + "\t");
-//                        System.out.print(rs.getDouble(6) + "\t");
-//                        System.out.print(rs.getString(7) + "\t");
-//                        System.out.println(rs.getString(8));
-//
-//                    }
-//                    break;
-//
-//                case 3:
-//                    while (rs.next()) {
-//                        System.out.print(rs.getLong(1) + "\t");
-//                        System.out.print(rs.getLong(2)+ "\t");
-//                        System.out.println(rs.getString(3));
-//                    }
-//                    break;
-//
-//                case 4:
-//                    while (rs.next()) {
-//                        System.out.print(rs.getString(1) + "\t");
-//                        System.out.println(rs.getLong(2));
-//                    }
-//                    break;
-//
-//                case 5:
-//                    while (rs.next()) {
-//                        System.out.print(rs.getString(1) + "\t");
-//                        System.out.print(rs.getString(2) + "\t");
-//                        System.out.print(rs.getLong(3)+ "\t");
-//                        System.out.print(rs.getBoolean(4) + "\t");
-//                        System.out.print(rs.getString(5) + "\t");
-//                        System.out.println(rs.getLong(6));
-//
-//                    }
-//                    break;
-//
-//                case 6:
-//                    while (rs.next()) {
-//                        System.out.print(rs.getString(1) + "\t");
-//                        System.out.print(rs.getString(2) + "\t");
-//                        System.out.print(rs.getString(3) + "\t");
-//                        System.out.print(rs.getString(4) + "\t");
-//                        System.out.print(rs.getDate(5) + "\t");
-//                        System.out.print(rs.getString(6) + "\t");
-//                        System.out.println(rs.getString(7));
-//
-//                    }
-//                    break;
-//
-//                case 7:
-//                    while (rs.next()) {
-//                        System.out.print(rs.getLong(1) + "\t");
-//                        System.out.print(rs.getString(2) + "\t");
-//                        System.out.print(rs.getString(3) + "\t");
-//                        System.out.print(rs.getDate(4) + "\t");
-//                        System.out.println(rs.getDate(5));
-//
-//                    }
-//                    break;
-//
-//                case 8:
-//                    while (rs.next()) {
-//                        System.out.print(rs.getLong(1) + "\t");
-//                        System.out.print(rs.getString(2) + "\t");
-//                        System.out.print(rs.getString(3) + "\t");
-//                        System.out.print(rs.getTime(4) + "\t");
-//                        System.out.print(rs.getTime(5) + "\t");
-//                        System.out.println(rs.getLong(6));
-//
-//                    }
-//                    break;
-//
-//                case 9:
-//                    while (rs.next()) {
-//                        System.out.print(rs.getString(1) + "\t");
-//                        System.out.print(rs.getString(2) + "\t");
-//                        System.out.println(rs.getString(3));
-//
-//                    }
-//                    break;
-//
-//            }
-//        }
-//        catch (Exception exc)
-//        {
-//            exc.printStackTrace();
-//        }
-//        finally {  // ALWAYS clean up DB resources
-//            try {
-//                if (rs != null)
-//                    rs.close();
-//                if (stmt != null)
-//                    stmt.close();
-//                if (conn != null)
-//                    conn.close();
-//            }
-//            catch (SQLException se) {
-//                se.printStackTrace();
-//            }
-//        }
-
-
     }
 
 
     /**
-     * Helper Method for write Query to display query results.
+     * Helper Method to display query results.
+     *
+     * @param rs : Result set from database query
+     * @return void.
      * */
     private static void displayQueryResults(ResultSet rs){
 
+        //TODO: format print for all display types (game description long, messes up print formatting).
 
+        try{
+            //get object of rs meta data
+            ResultSetMetaData rsmd = rs.getMetaData();
+            //get number of columns
+            int colCount = rsmd.getColumnCount();
+            System.out.println("Debug: number of columns: " + colCount);
+            //print out column labels
+            for (int i = 1; i <= colCount; i++) {
+                System.out.format("%-30s", rsmd.getColumnLabel(i));
+            }
+            System.out.println();
+            //get the rs data
+            while(rs.next()) {
 
+                for(int i = 1; i <= colCount; i++) {
+                    Object obj = rs.getObject(i);
+                    if(obj != null) {
+                        System.out.format("%-30s", rs.getObject(i).toString());
+                    }
+                }
+                System.out.println();
+            }
+        } catch (SQLException se) {
+            System.out.println("There was problem displaying query results.");
+            se.printStackTrace();
+        }
     }
 
     /**
