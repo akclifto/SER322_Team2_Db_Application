@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 /**
@@ -27,6 +28,54 @@ public class Application {
     private static Connection conn = null;
 
     /**
+     * Helper Method to execute writeQuery method.  This method help writeQuery execute users queries
+     * back-to-back
+     *
+     * @param scan : scanner for user input.
+     * @return void.
+     * */
+    private static void executeWriteQuery(Scanner scan) {
+
+        PreparedStatement pStmt = null;
+        String query = null;
+
+        System.out.println("To exit to Main Menu, press \"Q\".\n");
+        System.out.println("Write a new query:");
+
+        try {
+
+            if (scan.nextLine() != null) {
+                query = scan.nextLine();
+                //check if user exits the method to main menu
+                if (query.equalsIgnoreCase("Q")) {
+                    return;
+                }
+                System.out.println("User query: " + query);
+            }
+            //check for empty query
+            if (query == null || query.equals("")) {
+                System.out.println("Query statement is empty!");
+                return;
+            }
+            //prepare the statement and execute
+            pStmt = conn.prepareStatement(query);
+            rs = pStmt.executeQuery();
+            System.out.println("Printing out result of the query!");
+
+                //TODO:  print out results
+
+        } catch (SQLException se) {
+            System.out.println("There was a problem preparing the statement.");
+            se.printStackTrace();
+        }
+
+        executeWriteQuery(scan);
+
+    }
+
+
+
+    /**
      * Method to run manual queries on database.  The user will type a manual query, and it will be
      * executed on the given databse.
      *
@@ -35,30 +84,13 @@ public class Application {
      */
     private static void writeQuery(Scanner scan) {
 
-        String query;
         System.out.println("\n----------------------");
         System.out.println("WRITE YOU OWN QUERY");
         System.out.println("----------------------");
         System.out.println("Here, you can manually write your own query to access information from the "
                 + "VGS database.");
-        System.out.println("To exit writing your own query, press \"Q\"\n");
-        System.out.println("Write your query:");
 
-        while(scan.nextLine() != null) {
-
-            query = scan.nextLine();
-            if(query.equalsIgnoreCase("Q")) {
-                getUserInput();
-            }
-            System.out.println(query);
-
-            System.out.println("write another query:");
-            query = scan.nextLine();
-            System.out.println(query);
-
-
-        }
-
+        executeWriteQuery(scan);
 
 
 //        int selection;
