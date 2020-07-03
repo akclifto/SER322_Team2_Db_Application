@@ -27,24 +27,31 @@ public class Application {
     private static Statement stmt = null;
     private static Connection conn = null;
 
+
     /**
-     * Helper Method to execute writeQuery method.  This method helps writeQuery execute users queries
-     * back-to-back.
+     * Method to run manual queries on database.  The user will type a manual query, and it will be
+     * executed on the given databse.
      *
      * @param scan : scanner for user input.
      * @return void.
-     * */
-    private static void executeWriteQuery(Scanner scan) {
+     */
+    private static void writeQuery(Scanner scan) {
 
         String query = null;
         PreparedStatement pStmt = null;
+
+        System.out.println("\n----------------------");
+        System.out.println("WRITE YOU OWN QUERY");
+        System.out.println("----------------------");
+        System.out.println("Here, you can manually write your own query to access information from the "
+                + "VGS database.");
 
         try {
             //do-while to execute queries and print results.
             do {
                 System.out.println("To exit to Main Menu, press \"Q\".\n");
                 System.out.println("Write a new query:");
-                
+
                 if (scan.nextLine() != null) {
                     query = scan.nextLine();
                     //check if user exits the method to main menu
@@ -56,16 +63,18 @@ public class Application {
                 }
                 //check for empty query
                 if (query == null || query.equals("")) {
-                    System.out.println("Query statement is empty!");
-                    System.out.println("Return to Main Menu.");
+                    System.out.println("Query statement is empty!  Returning to Main Menu.");
                     break;
                 }
                 //prepare the statement and execute
                 pStmt = conn.prepareStatement(query);
                 rs = pStmt.executeQuery();
+
+                //print results
                 System.out.println("Printing out result of the query!");
 
                 //TODO:  print out results
+                displayQueryResults(rs);
 
 
             } while (!query.equalsIgnoreCase("Q"));
@@ -84,27 +93,10 @@ public class Application {
                 ps.printStackTrace();
             }
         }
-    }
 
-
-
-    /**
-     * Method to run manual queries on database.  The user will type a manual query, and it will be
-     * executed on the given databse.
-     *
-     * @param scan : scanner for user input.
-     * @return void.
-     */
-    private static void writeQuery(Scanner scan) {
-
-        System.out.println("\n----------------------");
-        System.out.println("WRITE YOU OWN QUERY");
-        System.out.println("----------------------");
-        System.out.println("Here, you can manually write your own query to access information from the "
-                + "VGS database.");
-
-        executeWriteQuery(scan);
-
+        //after method finished, get user input
+        System.out.println("\n");
+        getUserInput();
 
 //        int selection;
 //
@@ -246,9 +238,17 @@ public class Application {
 //            }
 //        }
 
-        //after method finished, get user input
-        System.out.println("\n");
-        getUserInput();
+
+    }
+
+
+    /**
+     * Helper Method for write Query to display query results.
+     * */
+    private static void displayQueryResults(ResultSet rs){
+
+
+
     }
 
     /**
