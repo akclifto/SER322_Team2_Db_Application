@@ -211,12 +211,12 @@ public class Application {
 
         do {
             System.out.println("Please enter the integer associated with a presetQuery");
-            System.out.println("1. " + query1);
-            System.out.println("2. " + query2);
-            System.out.println("3. " + query3);
-            System.out.println("4. " + query4);
-            System.out.println("5. " + query5);
-            System.out.println("6. " + query6);
+            System.out.println("1. " + query1 + "\n");
+            System.out.println("2. " + query2 + "\n");
+            System.out.println("3. " + query3 + "\n");
+            System.out.println("4. " + query4 + "\n");
+            System.out.println("5. " + query5 + "\n");
+            System.out.println("6. " + query6 + "\n");
             //get user input and validate selection
             while (!scan.hasNextInt()) {
                 System.out.println("That's not a number!");
@@ -224,7 +224,7 @@ public class Application {
             }
             selection = scan.nextInt();
         } while (selection < 1 || selection > 6);
-        System.out.println("Selection was successful!");
+        System.out.println("Selection was successful!" + "\n");
 
         try {
             // Create a statement
@@ -239,7 +239,7 @@ public class Application {
                     rs = stmt.executeQuery(query1);
 
                     while (rs.next()) {
-                        System.out.print(rs.getString(1) + "\t");
+                        System.out.println(rs.getString("Platform_Name") + "\t");
 
                     }
                     break;
@@ -250,10 +250,10 @@ public class Application {
                     rs = stmt.executeQuery(query2);
 
                     while (rs.next()) {
-                        System.out.print(rs.getString(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
-                        System.out.print(rs.getString(3) + "\t");
-                        System.out.print(rs.getString(4) + "\t");
+                        System.out.print(rs.getString("Title_Name") + "\t");
+                        System.out.print(rs.getString("Description") + "\t");
+                        System.out.print(rs.getString("ESRB_Rating") + "\t");
+                        System.out.println(rs.getString("Platform_Name") + "\t");
 
 
                     }
@@ -264,14 +264,14 @@ public class Application {
                     rs = stmt.executeQuery(query3);
 
                     while (rs.next()) {
-                        System.out.print(rs.getString(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
-                        System.out.print(rs.getString(3) + "\t");
-                        System.out.print(rs.getDate(4) + "\t");
-                        System.out.print(rs.getLong(5) + "\t");
-                        System.out.print(rs.getBoolean(6) + "\t");
-                        System.out.print(rs.getString(7) + "\t");
-                        System.out.print(rs.getString(8) + "\t");
+                        System.out.print(rs.getString("Member_ID") + "\t");
+                        System.out.print(rs.getString("First_Name") + "\t");
+                        System.out.print(rs.getString("Last_Name") + "\t");
+                        System.out.print(rs.getDate("Birthdate") + "\t");
+                        System.out.print(rs.getLong("Credit_Card_Number") + "\t");
+                        System.out.print(rs.getBoolean("Subscription") + "\t");
+                        System.out.print(rs.getString("Email") + "\t");
+                        System.out.println(rs.getString("Platform_Name") + "\t");
                     }
                     break;
 
@@ -290,7 +290,7 @@ public class Application {
                         System.out.print(rs.getDouble("Metacritic_Rating") + "\t");
                         System.out.print(rs.getString("Genre_Name") + "\t");
                         System.out.print(rs.getString("Genre_Description") + "\t");
-                        System.out.print(rs.getString("Platform_Name") + "\t");
+                        System.out.println(rs.getString("Platform_Name") + "\t");
                     }
                     break;
 
@@ -298,8 +298,8 @@ public class Application {
                     // Setup a query
                     rs = stmt.executeQuery(query5);
                     while (rs.next()) {
-                        System.out.print(rs.getString(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
+                        System.out.print(rs.getString("Member_ID") + "\t");
+                        System.out.println(rs.getString("Title_Name") + "\t");
 
                     }
                     break;
@@ -308,9 +308,9 @@ public class Application {
                     // Setup a query
                     rs = stmt.executeQuery(query6);
                     while (rs.next()) {
-                        System.out.print(rs.getString(1) + "\t");
-                        System.out.print(rs.getString(2) + "\t");
-                        System.out.print(rs.getString(3) + "\t");
+                        System.out.print(rs.getString("Member_ID") + "\t");
+                        System.out.print(rs.getString("Title_Name") + "\t");
+                        System.out.println(rs.getString("Platform_Name") + "\t");
 
                     }
                     break;
@@ -319,20 +319,6 @@ public class Application {
         } catch (Exception exc) {
             exc.printStackTrace();
         }
-//        finally {  // ALWAYS clean up DB resources
-//            try {
-//                if (rs != null)
-//                    rs.close();
-//                if (stmt != null)
-//                    stmt.close();
-//                if (conn != null)
-//                    conn.close();
-//            }
-//            catch (SQLException se) {
-//                se.printStackTrace();
-//            }
-//        }
-
         //after method finished, get user input
         getUserInput();
     }
@@ -419,7 +405,7 @@ public class Application {
 
                     exitProgram(scan);
                     break;
-                //access to debug messages for testing
+                    //access to debug messages for testing
                 } else if (in.equalsIgnoreCase("debug")) {
 
                     if (debugFlag) {
