@@ -21,13 +21,14 @@ import java.util.Scanner;
  * @author Robert Ibarra (rnibarra@asu.edu)
  * <p>
  * SER 322 Project Team 2 Deliverable 4
- * @version 2020.07.01
+ * @version 2020.07.07
  */
 public class Application {
 
     private static ResultSet rs = null;
     private static Statement stmt = null;
     private static Connection conn = null;
+    private static boolean debugFlag = false; //boolean for debug messages
 
 
     /**
@@ -38,7 +39,7 @@ public class Application {
      * @return void.
      */
     private static void writeQuery(Scanner scan) {
-        
+
         PreparedStatement pStmt = null;
 
         System.out.println("\n----------------------");
@@ -58,14 +59,14 @@ public class Application {
                 query = scan.nextLine();
 
                 //check base cases for query
-                if(checkString(query)) {
+                if (checkString(query)) {
                     break;
                 }
                 //trim query if necessary to fit prepared statement format.
                 if (query.endsWith(";")) {
-//                    System.out.println("Debug:  query before: " + query);
-                    query = query.substring(0, query.length() -1);
-//                    System.out.println("Debug: query after: " + query);
+                    if(debugFlag) debug("Query before: " + query);
+                    query = query.substring(0, query.length() - 1);
+                    if(debugFlag) debug("Query after: " + query);
                 }
 
                 System.out.println("Executing user query: " + query + ";\n");
@@ -75,7 +76,7 @@ public class Application {
 
                 //print results
                 displayQueryResults(rs);
-                System.out.println("Press Enter to Continue.");
+                System.out.print("Press Enter to Continue.");
             }
         } catch (SQLException se) {
             System.out.println("Improper Query statement.  Please check syntax and/or database tables."
@@ -85,7 +86,7 @@ public class Application {
             try {
                 if (pStmt != null) {
                     pStmt.close();
-                    System.out.println("Prepared Statement closed!");
+                    if(debugFlag) debug("Prepared Statement closed!");
                 }
             } catch (SQLException ps) {
                 ps.printStackTrace();
@@ -102,8 +103,8 @@ public class Application {
      *
      * @param query :  String query from user input to check
      * @return true if user opts to exit to main menu or empty string, false otherwise.
-     * */
-    private static boolean checkString (String query) {
+     */
+    private static boolean checkString(String query) {
 
         if (query.equalsIgnoreCase("Q")) {
             System.out.println("Returning to Main Menu.");
@@ -113,8 +114,7 @@ public class Application {
             System.out.println("Query statement is empty!  Returning to Main Menu.");
             return true;
         }
-
-    return false;
+        return false;
     }
 
     /**
@@ -132,7 +132,7 @@ public class Application {
             ResultSetMetaData rsmd = rs.getMetaData();
             //get number of columns
             int colCount = rsmd.getColumnCount();
-//            System.out.println("Debug: number of columns: " + colCount);
+            if (debugFlag) debug("Number of columns: " + colCount);
             //print out column labels
             for (int i = 1; i <= colCount; i++) {
 
@@ -374,8 +374,9 @@ public class Application {
      */
     private static void exitProgram(Scanner scan) {
 
-        System.out.println("Exiting Program.");
+        System.out.print("Exiting Program. ");
         scan.close();
+        if(debugFlag) debug("Scanner Closed!");
     }
 
     /**
@@ -418,6 +419,16 @@ public class Application {
 
                     exitProgram(scan);
                     break;
+                //access to debug messages for testing
+                } else if (in.equalsIgnoreCase("debug")) {
+
+                    if (debugFlag) {
+                        debugFlag = false;
+                        System.out.println("Debug messages toggled off.");
+                    } else {
+                        debugFlag = true;
+                        System.out.println("Debug message toggled on.");
+                    }
                 } else {
 
                     System.out.println("Invalid user input.  Please choose a valid option.\n");
@@ -469,11 +480,11 @@ public class Application {
             try {
                 if (rs != null) {
                     rs.close();
-                    System.out.println("ResultSet closed!");
+                    if(debugFlag) debug("ResultSet closed!");
                 }
                 if (stmt != null) {
                     stmt.close();
-                    System.out.println("Query Statement closed!");
+                    if(debugFlag) debug("Query Statement closed!");
                 }
             } catch (SQLException se) {
                 System.out.println("There is a problem closing database resources!");
@@ -482,7 +493,7 @@ public class Application {
             try {
                 if (conn != null) {
                     conn.close();
-                    System.out.println("Connection closed!");
+                    System.out.println("Connection closed.");
                 }
             } catch (Throwable se) {
                 System.out.println("There is a leak!");
@@ -490,4 +501,18 @@ public class Application {
             }
         }
     }
+
+
+    /**
+     * Helper method for debugging.  This method is toggled with debugFlag in the main menu.
+     * At the main menu, enter "debug" to toggle on/off message debugger
+     *
+     * @param message :  message to pass to debugger
+     * @return void.
+     * */
+    private static void debug(String message) {
+
+        System.out.println("Debug: " + message);
+    }
+
 }
