@@ -54,7 +54,6 @@ public class Application {
             do {
                 System.out.println("To exit to Main Menu, press \"Q\".");
                 System.out.println("Write a new query (do not include \";\" at the end of the query):");
-
                 if (scan.nextLine() != null) {
                     query = scan.nextLine();
                     //check if user exits the method to main menu
@@ -68,6 +67,7 @@ public class Application {
                     System.out.println("Query statement is empty!  Returning to Main Menu.");
                     break;
                 }
+
                 System.out.println("Executing user query: " + query + ";\n");
                 //prepare the statement and execute
                 pStmt = conn.prepareStatement(query);
@@ -75,7 +75,6 @@ public class Application {
 
                 //print results
                 displayQueryResults(rs);
-
             } while (!query.equalsIgnoreCase("Q"));
 
         } catch (SQLException se) {
