@@ -1,12 +1,6 @@
 package vgs;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSetMetaData;
+import java.sql.*;
 import java.util.Scanner;
 
 /**
@@ -28,6 +22,7 @@ public class Application {
     private static ResultSet rs = null;
     private static Statement stmt = null;
     private static Connection conn = null;
+    private static PreparedStatement ps = null;
     private static boolean debugFlag = false; //boolean for debug messages
 
 
@@ -330,8 +325,326 @@ public class Application {
      * @return void.
      */
     private static void insertData(Scanner scan) {
-        //TODO: insert manual data
-        System.out.println("placeholder insertData");
+        //TODO: insert manual data, testing
+
+        int integer = 0;
+        String colString;
+        String colString2;
+        String colString3;
+        String colString4;
+        String colString5;
+        String colString6;
+        String colDate;
+        String colTime;
+        String colTime2;
+        float colFloat;
+        long colLong;
+        long colLong2;
+        boolean colBool;
+        int colInt;
+
+
+        do{
+        System.out.println("Please select enter the integer associated with the table to insert a tuple into: ");
+        System.out.println("1. Account, 2. Customer, 3. Genre, 4. Logs_Into, 5. Platform, 6. Platform_Type, 7. Save_Game_File, \n" +
+                            "8. Title, 9. User_Library");
+
+        //get user input and validate selection
+        while (!scan.hasNextInt()) {
+            System.out.println("That's not a number!");
+            scan.next();
+        }
+        integer = scan.nextInt();
+    } while (integer < 1 || integer > 9);
+        System.out.println("Selection was successful!" + "\n");
+
+        try {
+            // Create a statement
+            stmt = conn.createStatement();
+
+
+            // Display the results
+            switch (integer) {
+                case 1:
+                    //Ask user for input values
+                    System.out.println("INSERT INTO ACCOUNT VALUES (Account_PW, Member_ID, Credit_Card_Number, Subscription, Email, Serial_Number)");
+                    System.out.println("Please enter Account_PW: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Member_ID: ");
+                    colString2 = scan.next();
+                    System.out.println("Please enter Credit_Card_Number: ");
+                    colLong = scan.nextLong();
+                    System.out.println("Please enter Subscription: ");
+                    colBool = scan.nextBoolean();
+                    System.out.println("Please enter Email: ");
+                    colString3 = scan.next();
+                    System.out.println("Please enter Serial_Number: ");
+                    colLong2 = scan.nextLong();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("INSERT INTO ACCOUNT VALUES (?, ?, ?, ?, ?, ?)");
+                    ps.setString(1, colString);
+                    ps.setString(2, colString2);
+                    ps.setLong(3, colLong);
+                    ps.setBoolean(4, colBool);
+                    ps.setString(5, colString3);
+                    ps.setLong(6, colLong2);
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("Inserted tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 2:
+
+                    //Ask user for input values
+                    System.out.println("INSERT INTO CUSTOMER VALUES (Email, First_Name, Middle_Name, Last_Name, Birthdate, Account_PW, Member_ID)");
+                    System.out.println("Please enter Email: ");
+                    colString = scan.next();
+                    System.out.println("Please enter First_Name: ");
+                    colString2 = scan.next();
+                    System.out.println("Please enter Middle_Name: ");
+                    colString3 = scan.next();
+                    System.out.println("Please enter Last_Name: ");
+                    colString4 = scan.next();
+                    System.out.println("Please enter Birthdate YYYY/MM/DD: ");
+                    colDate = scan.next();
+                    System.out.println("Please enter Account_PW: ");
+                    colString5 = scan.next();
+                    System.out.println("Please enter Member_ID: ");
+                    colString6 = scan.next();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("INSERT INTO CUSTOMER VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    ps.setString(1, colString);
+                    ps.setString(2, colString2);
+                    ps.setString(3, colString3);
+                    ps.setString(4, colString4);
+                    ps.setDate(5, Date.valueOf(colDate));
+                    ps.setString(6, colString5);
+                    ps.setString(7, colString6);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("Inserted tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+                    break;
+
+                case 3:
+                    //Ask user for input values
+                    System.out.println("INSERT INTO GENRE VALUES (Genre_Name, Genre_Description)");
+                    System.out.println("Please enter Genre_Name: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Genre_Description: ");
+                    colString2 = scan.next();
+
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("INSERT INTO Genre VALUES (?, ?)");
+                    ps.setString(1, colString);
+                    ps.setString(2, colString2);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("Inserted tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+                    break;
+
+                case 4:
+                    //Ask user for input values
+                    System.out.println("INSERT INTO LOGS_INTO (Account_PW, Member_ID, Customer_Email)");
+                    System.out.println("Please enter Account_PW: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Member_ID: ");
+                    colString2 = scan.next();
+                    System.out.println("Please enter Customer_Email: ");
+                    colString3 = scan.next();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("INSERT INTO LOGS_INTO VALUES (?, ?, ?)");
+                    ps.setString(1, colString);
+                    ps.setString(2, colString2);
+                    ps.setString(3, colString3);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("Inserted tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 5:
+                    //Ask user for input values
+                    System.out.println("INSERT INTO PLATFORM (Serial_Number, UPC, Platform_Name)");
+                    System.out.println("Please enter Serial_Number: ");
+                    colLong = scan.nextLong();
+                    System.out.println("Please enter UPC: ");
+                    colLong2 = scan.nextLong();
+                    System.out.println("Please enter Platform_Name: ");
+                    colString = scan.next();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("INSERT INTO PLATFORM VALUES (?, ?, ?)");
+                    ps.setLong(1, colLong);
+                    ps.setLong(2, colLong2);
+                    ps.setString(3, colString);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("Inserted tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 6:
+                    //Ask user for input values
+                    System.out.println("INSERT INTO PLATFORM_TYPE (Platform_Name, Serial_Number)");
+
+                    System.out.println("Please enter Platform_Name: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Serial_Number: ");
+                    colLong = scan.nextLong();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("INSERT INTO PLATFORM_TYPE VALUES (?, ?)");
+                    ps.setString(1, colString);
+                    ps.setLong(2, colLong);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("Inserted tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 7:
+                    //Ask user for input values
+                    System.out.println("INSERT INTO SAVE_GAME_FILE (UPC, Account_PW, Member_ID, Start_Time, End_Time, Serial Number)");
+
+                    System.out.println("Please enter UPC: ");
+                    colLong = scan.nextLong();
+                    System.out.println("Please enter Account_PW: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Member_ID: ");
+                    colString2 = scan.next();
+                    System.out.println("Please enter Start_Time 00:00:00 : ");
+                    colTime = scan.next();
+                    System.out.println("Please enter End_Time 00:00:00 : ");
+                    colTime2 = scan.next();
+                    System.out.println("Please enter Serial_Number: ");
+                    colLong2 = scan.nextLong();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("INSERT INTO SAVE_GAME_FILE VALUES (?, ?, ?, ?, ?, ?)");
+                    ps.setLong(1, colLong);
+                    ps.setString(2, colString);
+                    ps.setString(3, colString2);
+                    ps.setTime(4, Time.valueOf(colTime));
+                    ps.setTime(5, Time.valueOf(colTime2));
+                    ps.setLong(6, colLong2);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("Inserted tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 8:
+                    //Ask user for input values
+                    System.out.println("INSERT INTO TITLE (UPC, Title_Name, Description, Year_Of_Release, ESRB_Rating, Metacritic_Rating, Genre_Name, Genre_Description)");
+
+                    System.out.println("Please enter UPC: ");
+                    colLong = scan.nextLong();
+                    System.out.println("Please enter Title_Name: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Description: ");
+                    colString2 = scan.next();
+                    System.out.println("Please enter Year_Of_Release YYYY : ");
+                    colInt = scan.nextInt();
+                    System.out.println("Please enter ESRB_Rating : ");
+                    colString3 = scan.next();
+                    System.out.println("Please enter Metacritic_Rating: ");
+                    colFloat = scan.nextFloat();
+                    System.out.println("Please enter Genre_Name: ");
+                    colString4 = scan.next();
+                    System.out.println("Please enter Genre_Description: ");
+                    colString5 = scan.next();
+
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("INSERT INTO TITLE VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    ps.setLong(1, colLong);
+                    ps.setString(2, colString);
+                    ps.setString(3, colString2);
+                    ps.setInt(4, colInt);
+                    ps.setString(5, colString3);
+                    ps.setFloat(6, colFloat);
+                    ps.setString(7, colString4);
+                    ps.setString(8, colString5);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("Inserted tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 9:
+                    //Ask user for input values
+                    System.out.println("INSERT INTO USER_LIBRARY (UPC, Account_PW, Member_ID, Date_Added, Date_Removed)");
+
+                    System.out.println("Please enter UPC: ");
+                    colLong = scan.nextLong();
+                    System.out.println("Please enter Account_PW: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Member_ID: ");
+                    colString2 = scan.next();
+                    System.out.println("Please enter Date_Added YYYY/MM/DD : ");
+                    colDate = scan.next();
+                    System.out.println("Please enter Date_Removed YYYY/MM/DD : ");
+                    colString3 = scan.next();
+
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("INSERT INTO USER_LIBRARY VALUES (?, ?, ?, ?, ?)");
+                    ps.setLong(1, colLong);
+                    ps.setString(2, colString);
+                    ps.setString(3, colString2);
+                    ps.setDate(4, Date.valueOf(colDate));
+                    ps.setDate(5, Date.valueOf(colString3));
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("Inserted tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+
 
         //after method finished, get user input
         getUserInput();
