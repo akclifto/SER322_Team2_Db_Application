@@ -38,8 +38,7 @@ public class Application {
      * @return void.
      */
     private static void writeQuery(Scanner scan) {
-
-        //TODO:  bug on second iteration of loop, something with scan.nextLine() not reading user input first entry, but will read second.
+        
         PreparedStatement pStmt = null;
 
         System.out.println("\n----------------------");
@@ -49,23 +48,24 @@ public class Application {
                 + "VGS database.");
 
         try {
-            String query = null;
-            //do-while to execute queries and print results.
-            do {
+            String query;
+
+            while (!scan.nextLine().equalsIgnoreCase("Q")) {
+
                 System.out.println("To exit to Main Menu, press \"Q\".");
-                System.out.println("Write a new query (do not include \";\" at the end of the query):");
-                if (scan.nextLine() != null) {
-                    query = scan.nextLine();
-                    //check if user exits the method to main menu
-                    if (query.equalsIgnoreCase("Q")) {
-                        System.out.println("Returning to Main Menu.");
-                        break;
-                    }
-                }
-                //check for empty query
-                if (query == null || query.equals("")) {
-                    System.out.println("Query statement is empty!  Returning to Main Menu.");
+                System.out.println("Write a new query:");
+
+                query = scan.nextLine();
+
+                //check base cases for query
+                if(checkString(query)) {
                     break;
+                }
+                //trim query if necessary to fit prepared statement format.
+                if (query.endsWith(";")) {
+//                    System.out.println("Debug:  query before: " + query);
+                    query = query.substring(0, query.length() -1);
+//                    System.out.println("Debug: query after: " + query);
                 }
 
                 System.out.println("Executing user query: " + query + ";\n");
@@ -75,10 +75,10 @@ public class Application {
 
                 //print results
                 displayQueryResults(rs);
-            } while (!query.equalsIgnoreCase("Q"));
-
+                System.out.println("Press Enter to Continue.");
+            }
         } catch (SQLException se) {
-            System.out.println("Improper Query statement.  Please check syntax and database tables."
+            System.out.println("Improper Query statement.  Please check syntax and/or database tables."
                     + "  Returning to Main Menu.");
             //close the prepared statement
         } finally {
@@ -96,6 +96,26 @@ public class Application {
         getUserInput();
     }
 
+
+    /**
+     * Helper method to check String query base cases.
+     *
+     * @param query :  String query from user input to check
+     * @return true if user opts to exit to main menu or empty string, false otherwise.
+     * */
+    private static boolean checkString (String query) {
+
+        if (query.equalsIgnoreCase("Q")) {
+            System.out.println("Returning to Main Menu.");
+            return true;
+        }
+        if (query.equals("")) {
+            System.out.println("Query statement is empty!  Returning to Main Menu.");
+            return true;
+        }
+
+    return false;
+    }
 
     /**
      * Helper Method to display query results.
