@@ -424,10 +424,10 @@ public class Application {
 
                     if (debugFlag) {
                         debugFlag = false;
-                        System.out.println("Debug messages toggled off.");
+                        System.out.println("Debug messages toggled off.  Proceed with Main Menu selection.");
                     } else {
                         debugFlag = true;
-                        System.out.println("Debug message toggled on.");
+                        System.out.println("Debug message toggled on.  Proceed with Main Menu selection.");
                     }
                 } else {
 
@@ -440,6 +440,7 @@ public class Application {
             ex.printStackTrace();
         }
     }
+
 
     /**
      * Entry point of the program. Loads database and passes to get user input; closes all connections on exit.
