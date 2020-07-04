@@ -102,7 +102,7 @@ public class Application {
      * Helper method to check String query base cases.
      *
      * @param query :  String query from user input to check
-     * @return true if user opts to exit to main menu or empty string, false otherwise.
+     * @return true if user opts to exit to main menu or query is empty string, false otherwise.
      */
     private static boolean checkString(String query) {
 
