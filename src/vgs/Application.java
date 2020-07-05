@@ -319,7 +319,7 @@ public class Application {
     }
 
     /**
-     * Method to insert into database.
+     * Method to insert into database.  Will insert a single tuple, to a single table.
      *
      * @param scan : scanner for user input.
      * @return void.
@@ -356,6 +356,7 @@ public class Application {
         }
         integer = scan.nextInt();
     } while (integer < 1 || integer > 9);
+
         System.out.println("Selection was successful!" + "\n");
 
         try {
@@ -651,14 +652,246 @@ public class Application {
     }
 
     /**
-     * Method to remove data from database.
+     * Method to remove data from database.  Will remove a single tuple, from a single table.
      *
      * @param scan : scanner for user input.
      * @return void.
      */
     private static void removeData(Scanner scan) {
-        //TODO: remove data with query command
-        System.out.println("placeholder removeData");
+        //TODO: remove data with query command, testing
+
+        int integer = 0;
+        String colString;
+        String colString2;
+        String colString3;
+        long colLong;
+
+        do{
+            System.out.println("Please select enter the integer corresponding to the table to DELETE a tuple from: ");
+            System.out.println("1. Account, 2. Customer, 3. Genre, 4. Logs_Into, 5. Platform, 6. Platform_Type, 7. Save_Game_File, \n" +
+                    "8. Title, 9. User_Library");
+
+            //get user input and validate selection
+            while (!scan.hasNextInt()) {
+                System.out.println("That's not a number!");
+                scan.next();
+            }
+            integer = scan.nextInt();
+        } while (integer < 1 || integer > 9);
+
+        System.out.println("Selection was successful!" + "\n");
+
+        try {
+            // Create a statement
+            stmt = conn.createStatement();
+
+
+            // Display the results
+            switch (integer) {
+                case 1:
+                    //Ask user for input values
+                    System.out.println("DELETE FROM ACCOUNT WHERE Account_PW = ? AND Member_ID ?");
+                    System.out.println("Please enter Account_PW: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Member_ID: ");
+                    colString2 = scan.next();
+
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("DELETE FROM ACCOUNT WHERE ACCOUNT.Account_PW = ? AND ACCOUNT.Member_ID = ?");
+                    ps.setString(1, colString);
+                    ps.setString(2, colString2);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("DELETED tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 2:
+
+                    //Ask user for input values
+                    System.out.println("DELETE FROM CUSTOMER WHERE Email = ?");
+                    System.out.println("Please enter Email: ");
+                    colString = scan.next();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("DELETE FROM CUSTOMER WHERE CUSTOMER.Email = ?");
+                    ps.setString(1, colString);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("DELETED tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+                    break;
+
+                case 3:
+                    //Ask user for input values
+                    System.out.println("DELETE FROM GENRE WHERE Genre_Name = ?");
+                    System.out.println("Please enter Genre_Name: ");
+                    colString = scan.next();
+
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("DELETE FROM GENRE WHERE GENRE.Genre_Name = ?");
+                    ps.setString(1, colString);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("DELETED tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+                    break;
+
+                case 4:
+                    //Ask user for input values
+                    System.out.println("DELETE FROM LOGS_INTO WHERE Account_PW = ? AND Member_ID = ? AND Customer_Email = ?)");
+                    System.out.println("Please enter Account_PW: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Member_ID: ");
+                    colString2 = scan.next();
+                    System.out.println("Please enter Customer_Email: ");
+                    colString3 = scan.next();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("DELETE FROM LOGS_INTO WHERE LOGS_INTO.Account_PW = ? AND LOGS_INTO.Member_ID = ? AND LOGS_INTO.Customer_Email = ?");
+                    ps.setString(1, colString);
+                    ps.setString(2, colString2);
+                    ps.setString(3, colString3);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("DELETED tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 5:
+                    //Ask user for input values
+                    System.out.println("DELETE FROM PLATFORM WHERE Serial_Number = ?");
+                    System.out.println("Please enter Serial_Number: ");
+                    colLong = scan.nextLong();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("DELETE FROM PLATFORM WHERE PLATFORM.Serial_Number = ?");
+                    ps.setLong(1, colLong);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("DELETED tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 6:
+                    //Ask user for input values
+                    System.out.println("DELETE FROM PLATFORM_TYPE WHERE Platform_Name = ?");
+
+                    System.out.println("Please enter Platform_Name: ");
+                    colString = scan.next();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("DELETE FROM PLATFORM_TYPE WHERE PLATFORM_TYPE.Platform_Name = ?");
+                    ps.setString(1, colString);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("DELETED tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 7:
+                    //Ask user for input values
+                    System.out.println("DELETE FROM SAVE_GAME_FILE WHERE UPC = ? AND Account_PW = ? AND Member_ID = ?");
+
+                    System.out.println("Please enter UPC: ");
+                    colLong = scan.nextLong();
+                    System.out.println("Please enter Account_PW: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Member_ID: ");
+                    colString2 = scan.next();
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("DELETE FROM SAVE_GAME_FILE WHERE SAVE_GAME_FILE.UPC = ? AND SAVE_GAME_FILE.Account_PW = ? AND SAVE_GAME_FILE.Member_ID = ?");
+                    ps.setLong(1, colLong);
+                    ps.setString(2, colString);
+                    ps.setString(3, colString2);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("DELETED tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 8:
+                    //Ask user for input values
+                    System.out.println("DELETE FROM TITLE WHERE UPC = ?");
+
+                    System.out.println("Please enter UPC: ");
+                    colLong = scan.nextLong();
+
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("DELETE FROM TITLE WHERE TITLE.UPC = ?");
+                    ps.setLong(1, colLong);
+
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("DELETED tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+                case 9:
+                    //Ask user for input values
+                    System.out.println("DELETE FROM USER_LIBRARY WHERE UPC = ? AND Account_PW = ? AND Member_ID = ?");
+
+                    System.out.println("Please enter UPC: ");
+                    colLong = scan.nextLong();
+                    System.out.println("Please enter Account_PW: ");
+                    colString = scan.next();
+                    System.out.println("Please enter Member_ID: ");
+                    colString2 = scan.next();
+
+
+                    // Setup prepared statement
+                    ps = conn.prepareStatement("DELETE FROM USER_LIBRARY WHERE USER_LIBRARY.UPC =  ? AND USER_LIBRARY.Account_PW = ? AND USER_LIBRARY.Member_ID = ?");
+                    ps.setLong(1, colLong);
+                    ps.setString(2, colString);
+                    ps.setString(3, colString2);
+
+                    if (ps.executeUpdate() > 0) {
+                        System.out.println("DELETED tuple SUCCESSFULLY");
+                    }
+                    ps.close();
+                    // Have to do this to write changes to a DB
+                    conn.commit();
+
+                    break;
+
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
 
         //after method finished, get user input
         getUserInput();
