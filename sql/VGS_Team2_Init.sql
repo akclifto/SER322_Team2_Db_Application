@@ -15,7 +15,7 @@ This script will:
 	- Create all tables, inserts, and altertable
     - Show tables and describe each for easier navigation when testing queries in the VGS application.
 	
-@author Project Team 2
+@author Adam Clifton (akclifto@asu.edu)
 @version 2020.06.30
 
 */

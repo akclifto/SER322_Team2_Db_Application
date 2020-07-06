@@ -32,6 +32,8 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
+     * 
+     * @author Adam Clifton (akclifto@asu.edu)
      */
     private static void writeQuery(Scanner scan) {
 
@@ -98,6 +100,8 @@ public class Application {
      *
      * @param query :  String query from user input to check
      * @return true if user opts to exit to main menu or query is empty string, false otherwise.
+     * 
+     * @author Adam Clifton (akclifto@asu.edu)
      */
     private static boolean checkString(String query) {
 
@@ -117,10 +121,10 @@ public class Application {
      *
      * @param rs : Result set from database query
      * @return void.
+     * 
+     * @author Adam Clifton (akclifto@asu.edu)
      */
     private static void displayQueryResults(ResultSet rs) {
-
-        //TODO: format print for all display types (game description long, messes up print formatting).
 
         try {
             //get object of rs meta data
@@ -174,6 +178,8 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
+     * 
+     * @author Ivan Ferndandez (iafernan@asu.edu)
      */
     private static void selectPreset(Scanner scan) {
         //select presets
@@ -323,6 +329,8 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
+     * 
+     * @author Ivan Ferndandez (iafernan@asu.edu)
      */
     private static void insertData(Scanner scan) {
         //TODO: insert manual data, testing
@@ -656,6 +664,8 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
+     * 
+     * @author Ivan Ferndandez (iafernan@asu.edu)
      */
     private static void removeData(Scanner scan) {
         //TODO: remove data with query command, testing
@@ -903,6 +913,8 @@ public class Application {
      *
      * @param scan : scanner to close
      * @return void.
+     * 
+     * @author Adam Clifton (akclifto@asu.edu)
      */
     private static void exitProgram(Scanner scan) {
 
@@ -915,8 +927,12 @@ public class Application {
      * Method to get input for application via CLI.  Method show main menu and passes arguments based on user input.
      *
      * @return void.
+     * 
+     * @author Adam Clifton (acklifto@asu.edu)
      */
     private static void getUserInput() {
+
+        //TODO:  will need to include an update method per the instructions for the assignment on slack. 
 
         //show menu options
         System.out.println("Main Menu: ");
@@ -979,6 +995,8 @@ public class Application {
      *
      * @param args : args specified by user, includes sql server url, username, password, and jdbc driver.
      * @return void.
+     * 
+     * @author Adam Clifton (akclifto@asu.edu)
      */
     public static void main(String[] args) {
 
@@ -1042,6 +1060,8 @@ public class Application {
      *
      * @param message :  message to pass to debugger
      * @return void.
+     * 
+     * @author Adam Clifton (akclifto@asu.edu)
      * */
     private static void debug(String message) {
 
