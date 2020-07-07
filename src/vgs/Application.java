@@ -46,6 +46,9 @@ public class Application {
         System.out.println("-----------------------");
         System.out.println("Here, you can manually write your own query to access information from the "
                 + "VGS database.");
+        System.out.println("\nSample query format: "
+                + "\n \t\tselect * from customer;\n");
+
 
         try {
             String query;
@@ -111,7 +114,7 @@ public class Application {
             return true;
         }
         if (query.equals("")) {
-            System.out.println("Query statement is empty!  Returning to Main Menu.");
+            System.out.println("Statement is empty!  Returning to Main Menu.");
             return true;
         }
         return false;
@@ -416,7 +419,7 @@ public class Application {
                     colString3 = scan.next();
                     System.out.println("Please enter Last_Name: ");
                     colString4 = scan.next();
-                    System.out.println("Please enter Birthdate YYYY/MM/DD: ");
+                    System.out.println("Please enter Birthdate (in format \"YYYY-MM-DD\"):");
                     colDate = scan.next();
                     System.out.println("Please enter Account_PW: ");
                     colString5 = scan.next();
@@ -623,9 +626,9 @@ public class Application {
                     colString = scan.next();
                     System.out.println("Please enter Member_ID: ");
                     colString2 = scan.next();
-                    System.out.println("Please enter Date_Added YYYY/MM/DD : ");
+                    System.out.println("Please enter Date_Added (in format \"YYYY-MM-DD\"):");
                     colDate = scan.next();
-                    System.out.println("Please enter Date_Removed YYYY/MM/DD : ");
+                    System.out.println("Please enter Date_Removed (in format \"YYYY-MM-DD\"):");
                     colString3 = scan.next();
 
 
@@ -907,7 +910,7 @@ public class Application {
      * Method to update table in database.
      * <p>
      * example update statement:
-     * "update customer set middle_name="Testname" where first_name="brandon";"
+     *      "update customer set middle_name="Testname" where first_name="brandon";"
      *
      * @param scan : scanner for user input
      * @return void.
@@ -920,6 +923,9 @@ public class Application {
         System.out.println("\n----------------------");
         System.out.println("UPDATE TABLE");
         System.out.println("----------------------");
+        System.out.println("Here, you can enter an update statemet to change existing data within the database.");
+        System.out.println("\nSample update statement: "
+                + "\n \t\t update customer set middle_name=\"Testname\" where first_name=\"brandon\";\n");
 
         try {
             String update;
@@ -949,7 +955,7 @@ public class Application {
 
                 //commit the update to the database
                 conn.commit();
-                System.out.println("Update to table successful.  Press Enter to continue.");
+                System.out.println("Update to table SUCCESSFUL.  Press Enter to continue.");
             }
         } catch (SQLException se) {
             System.out.println("Improper update statement.  Please check syntax and/or database tables."
