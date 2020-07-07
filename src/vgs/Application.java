@@ -189,7 +189,7 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
-     * @author Ivan Ferndandez (iafernan@asu.edu)
+     * @author Ivan Fernandez (iafernan@asu.edu)
      */
     private static void selectPreset(Scanner scan) {
 
@@ -337,7 +337,7 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
-     * @author Ivan Ferndandez (iafernan@asu.edu)
+     * @author Ivan Fernandez (iafernan@asu.edu)
      */
     private static void insertData(Scanner scan) {
 
@@ -359,7 +359,7 @@ public class Application {
 
 
         do {
-            System.out.println("Please select enter the integer associated with the table to insert a tuple into: ");
+            System.out.println("Please select and enter the integer associated with the table to insert a tuple into: ");
             System.out.println("1. Account, 2. Customer, 3. Genre, 4. Logs_Into, 5. Platform, 6. Platform_Type, 7. Save_Game_File, \n" +
                     "8. Title, 9. User_Library");
 
@@ -670,7 +670,7 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
-     * @author Ivan Ferndandez (iafernan@asu.edu)
+     * @author Ivan Fernandez (iafernan@asu.edu)
      */
     private static void removeData(Scanner scan) {
 
