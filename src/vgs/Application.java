@@ -916,7 +916,7 @@ public class Application {
      * Method to update table in database.
      * <p>
      * example update statement:
-     *      "update customer set middle_name="Testname" where first_name="brandon";"
+     * "update customer set middle_name="Testname" where first_name="brandon";"
      *
      * @param scan : scanner for user input
      * @return void.
