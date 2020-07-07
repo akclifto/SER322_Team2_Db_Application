@@ -29,13 +29,12 @@ public class Application {
     /**
      * Method to run manual queries on database.  The user will type a manual query, and it will be
      * executed on the given database.
-     *
-     *  Sample query format:
-     *      "select * from customer;"
+     * <p>
+     * Sample query format:
+     * "select * from customer;"
      *
      * @param scan : scanner for user input.
      * @return void.
-     * 
      * @author Adam Clifton (akclifto@asu.edu)
      */
     private static void writeQuery(Scanner scan) {
@@ -64,9 +63,9 @@ public class Application {
                 }
                 //trim query if necessary to fit prepared statement format.
                 if (query.endsWith(";")) {
-                    if(debugFlag) debug("Query before: " + query);
+                    if (debugFlag) debug("Query before: " + query);
                     query = query.substring(0, query.length() - 1);
-                    if(debugFlag) debug("Query after: " + query);
+                    if (debugFlag) debug("Query after: " + query);
                 }
 
                 System.out.println("Executing user query: " + query + ";\n");
@@ -86,7 +85,7 @@ public class Application {
             try {
                 if (pStmt != null) {
                     pStmt.close();
-                    if(debugFlag) debug("Prepared Statement closed!");
+                    if (debugFlag) debug("Prepared Statement closed!");
                 }
             } catch (SQLException ps) {
                 ps.printStackTrace();
@@ -103,7 +102,6 @@ public class Application {
      *
      * @param query :  String query from user input to check
      * @return true if user opts to exit to main menu or query is empty string, false otherwise.
-     * 
      * @author Adam Clifton (akclifto@asu.edu)
      */
     private static boolean checkString(String query) {
@@ -124,7 +122,6 @@ public class Application {
      *
      * @param rs : Result set from database query
      * @return void.
-     * 
      * @author Adam Clifton (akclifto@asu.edu)
      */
     private static void displayQueryResults(ResultSet rs) {
@@ -181,7 +178,6 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
-     * 
      * @author Ivan Ferndandez (iafernan@asu.edu)
      */
     private static void selectPreset(Scanner scan) {
@@ -332,11 +328,9 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
-     * 
      * @author Ivan Ferndandez (iafernan@asu.edu)
      */
     private static void insertData(Scanner scan) {
-        //TODO: insert manual data, testing
 
         int integer = 0;
         String colString;
@@ -355,18 +349,18 @@ public class Application {
         int colInt;
 
 
-        do{
-        System.out.println("Please select enter the integer associated with the table to insert a tuple into: ");
-        System.out.println("1. Account, 2. Customer, 3. Genre, 4. Logs_Into, 5. Platform, 6. Platform_Type, 7. Save_Game_File, \n" +
-                            "8. Title, 9. User_Library");
+        do {
+            System.out.println("Please select enter the integer associated with the table to insert a tuple into: ");
+            System.out.println("1. Account, 2. Customer, 3. Genre, 4. Logs_Into, 5. Platform, 6. Platform_Type, 7. Save_Game_File, \n" +
+                    "8. Title, 9. User_Library");
 
-        //get user input and validate selection
-        while (!scan.hasNextInt()) {
-            System.out.println("That's not a number!");
-            scan.next();
-        }
-        integer = scan.nextInt();
-    } while (integer < 1 || integer > 9);
+            //get user input and validate selection
+            while (!scan.hasNextInt()) {
+                System.out.println("That's not a number!");
+                scan.next();
+            }
+            integer = scan.nextInt();
+        } while (integer < 1 || integer > 9);
 
         System.out.println("Selection was successful!" + "\n");
 
@@ -667,11 +661,9 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
-     * 
      * @author Ivan Ferndandez (iafernan@asu.edu)
      */
     private static void removeData(Scanner scan) {
-        //TODO: remove data with query command, testing
 
         int integer = 0;
         String colString;
@@ -679,7 +671,7 @@ public class Application {
         String colString3;
         long colLong;
 
-        do{
+        do {
             System.out.println("Please select enter the integer corresponding to the table to DELETE a tuple from: ");
             System.out.println("1. Account, 2. Customer, 3. Genre, 4. Logs_Into, 5. Platform, 6. Platform_Type, 7. Save_Game_File, \n" +
                     "8. Title, 9. User_Library");
@@ -913,15 +905,14 @@ public class Application {
 
     /**
      * Method to update table in database.
-     *
+     * <p>
      * example update statement:
-     *      "update customer set middle_name="Testname" where first_name="brandon";"
+     * "update customer set middle_name="Testname" where first_name="brandon";"
      *
      * @param scan : scanner for user input
      * @return void.
-     *
      * @author Adam Clifton (akclifto@asu.edu)
-     * */
+     */
     private static void updateTable(Scanner scan) {
 
         PreparedStatement pStmt = null;
@@ -946,9 +937,9 @@ public class Application {
                 }
                 //trim update if necessary to fit prepared statement format.
                 if (update.endsWith(";")) {
-                    if(debugFlag) debug("Update statement before: " + update);
+                    if (debugFlag) debug("Update statement before: " + update);
                     update = update.substring(0, update.length() - 1);
-                    if(debugFlag) debug("Update statement after: " + update);
+                    if (debugFlag) debug("Update statement after: " + update);
                 }
 
                 System.out.println("Executing user update statement: " + update + ";\n");
@@ -968,7 +959,7 @@ public class Application {
             try {
                 if (pStmt != null) {
                     pStmt.close();
-                    if(debugFlag) debug("Prepared Statement closed!");
+                    if (debugFlag) debug("Prepared Statement closed!");
                 }
             } catch (SQLException ps) {
                 ps.printStackTrace();
@@ -985,26 +976,22 @@ public class Application {
      *
      * @param scan : scanner to close
      * @return void.
-     * 
      * @author Adam Clifton (akclifto@asu.edu)
      */
     private static void exitProgram(Scanner scan) {
 
         System.out.print("Exiting Program. ");
         scan.close();
-        if(debugFlag) debug("Scanner Closed!");
+        if (debugFlag) debug("Scanner Closed!");
     }
 
     /**
      * Method to get input for application via CLI.  Method show main menu and passes arguments based on user input.
      *
      * @return void.
-     * 
      * @author Adam Clifton (acklifto@asu.edu)
      */
     private static void getUserInput() {
-
-        //TODO:  will need to include an update method per the instructions for the assignment on slack. 
 
         //show menu options
         System.out.println("Main Menu: ");
@@ -1036,7 +1023,7 @@ public class Application {
                 } else if (in.equals(("4"))) {
 
                     removeData(scan);
-                } else if (in.equalsIgnoreCase("5")) {
+                } else if (in.equals("5")) {
 
                     updateTable(scan);
                 } else if (in.equalsIgnoreCase(("Q"))) {
@@ -1071,7 +1058,6 @@ public class Application {
      *
      * @param args : args specified by user, includes sql server url, username, password, and jdbc driver.
      * @return void.
-     * 
      * @author Adam Clifton (akclifto@asu.edu)
      */
     public static void main(String[] args) {
@@ -1109,11 +1095,11 @@ public class Application {
             try {
                 if (rs != null) {
                     rs.close();
-                    if(debugFlag) debug("ResultSet closed!");
+                    if (debugFlag) debug("ResultSet closed!");
                 }
                 if (stmt != null) {
                     stmt.close();
-                    if(debugFlag) debug("Query Statement closed!");
+                    if (debugFlag) debug("Query Statement closed!");
                 }
             } catch (SQLException se) {
                 System.out.println("There is a problem closing database resources!");
@@ -1138,9 +1124,8 @@ public class Application {
      *
      * @param message :  message to pass to debugger
      * @return void.
-     * 
      * @author Adam Clifton (akclifto@asu.edu)
-     * */
+     */
     private static void debug(String message) {
 
         System.out.println("Debug: " + message);
