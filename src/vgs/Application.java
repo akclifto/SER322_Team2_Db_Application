@@ -28,7 +28,10 @@ public class Application {
 
     /**
      * Method to run manual queries on database.  The user will type a manual query, and it will be
-     * executed on the given databse.
+     * executed on the given database.
+     *
+     *  Sample query format:
+     *      "select * from customer;"
      *
      * @param scan : scanner for user input.
      * @return void.
@@ -41,7 +44,7 @@ public class Application {
 
         System.out.println("\n----------------------");
         System.out.println("WRITE YOU OWN QUERY");
-        System.out.println("----------------------");
+        System.out.println("-----------------------");
         System.out.println("Here, you can manually write your own query to access information from the "
                 + "VGS database.");
 
@@ -909,6 +912,75 @@ public class Application {
 
 
     /**
+     * Method to update table in database.
+     *
+     * example update statement:
+     *      "update customer set middle_name="Testname" where first_name="brandon";"
+     *
+     * @param scan : scanner for user input
+     * @return void.
+     *
+     * @author Adam Clifton (akclifto@asu.edu)
+     * */
+    private static void updateTable(Scanner scan) {
+
+        PreparedStatement pStmt = null;
+
+        System.out.println("\n----------------------");
+        System.out.println("UPDATE TABLE");
+        System.out.println("----------------------");
+
+        try {
+            String update;
+
+            while (!scan.nextLine().equalsIgnoreCase("Q")) {
+
+                System.out.println("To exit to Main Menu, press \"Q\".");
+                System.out.println("Please enter update statement:");
+
+                update = scan.nextLine();
+
+                //check base cases for update
+                if (checkString(update)) {
+                    break;
+                }
+                //trim update if necessary to fit prepared statement format.
+                if (update.endsWith(";")) {
+                    if(debugFlag) debug("Update statement before: " + update);
+                    update = update.substring(0, update.length() - 1);
+                    if(debugFlag) debug("Update statement after: " + update);
+                }
+
+                System.out.println("Executing user update statement: " + update + ";\n");
+                //prepare the statement and execute
+                pStmt = conn.prepareStatement(update);
+                pStmt.executeUpdate(update);
+
+                //commit the update to the database
+                conn.commit();
+                System.out.println("Update to table successful.  Press Enter to continue.");
+            }
+        } catch (SQLException se) {
+            System.out.println("Improper update statement.  Please check syntax and/or database tables."
+                    + "  Returning to Main Menu.");
+            //close the prepared statement
+        } finally {
+            try {
+                if (pStmt != null) {
+                    pStmt.close();
+                    if(debugFlag) debug("Prepared Statement closed!");
+                }
+            } catch (SQLException ps) {
+                ps.printStackTrace();
+            }
+        }
+        //after method finished, get user input
+        System.out.println("\n");
+        getUserInput();
+
+    }
+
+    /**
      * Method to exit program and close the scanner.
      *
      * @param scan : scanner to close
@@ -940,8 +1012,9 @@ public class Application {
         System.out.println("2 - Use preset queries provided with application");
         System.out.println("3 - Insert data into database");
         System.out.println("4 - Remove data from database");
+        System.out.println("5 - Update existing data in database");
         System.out.println("Q - Exit Program\n");
-        System.out.print("Please select an option (1, 2, 3, 4, Q): ");
+        System.out.print("Please select an option (1, 2, 3, 4, 5, Q): ");
 
         //set scanner and get input
         try (Scanner scan = new Scanner(System.in)) {
@@ -963,6 +1036,9 @@ public class Application {
                 } else if (in.equals(("4"))) {
 
                     removeData(scan);
+                } else if (in.equalsIgnoreCase("5")) {
+
+                    updateTable(scan);
                 } else if (in.equalsIgnoreCase(("Q"))) {
 
                     exitProgram(scan);
