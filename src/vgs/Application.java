@@ -929,7 +929,7 @@ public class Application {
         System.out.println("\n----------------------");
         System.out.println("UPDATE TABLE");
         System.out.println("----------------------");
-        System.out.println("Here, you can enter an update statemet to change existing data within the database.");
+        System.out.println("Here, you can enter an update statement to change existing data within the database.");
         System.out.println("\nSample update statement: "
                 + "\n \t\t update customer set middle_name=\"Testname\" where first_name=\"brandon\";\n");
 
