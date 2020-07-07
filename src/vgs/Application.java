@@ -192,8 +192,6 @@ public class Application {
      * @author Ivan Ferndandez (iafernan@asu.edu)
      */
     private static void selectPreset(Scanner scan) {
-        //select presets
-        //TODO: will need to pretty print output.
 
         String query1 = "SELECT PLATFORM.Platform_Name FROM PLATFORM, PLATFORM_TYPE WHERE PLATFORM.Platform_Name = PLATFORM_TYPE.Platform_Name";
 
