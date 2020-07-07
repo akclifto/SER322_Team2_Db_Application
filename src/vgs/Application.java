@@ -1014,6 +1014,8 @@ public class Application {
 
             //make a connection
             conn = DriverManager.getConnection(_url, args[1], args[2]);
+            //set autocommit to false
+            conn.setAutoCommit(false);
 
         } catch (ClassNotFoundException | SQLException se) {
             System.out.println("Error loading JDBC driver and/or connecting to server.");

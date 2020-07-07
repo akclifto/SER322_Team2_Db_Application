@@ -225,11 +225,11 @@ VALUES ('IloveGaming45!', 'TheDestroyer85', 'TheDestroyer85@gmail.com'),
        ('Pneuma8927&', 'ToolBand46&2', 'ToolBand46&2@gmail.com'),
        ('HeroesofThestormlover86$', 'TheCrow', 'BrandonLee@yahoo.com');
 
--- alter table customer to add FK Account_PW, Member_ID
-ALTER TABLE CUSTOMER
-    ADD CONSTRAINT CUSTACCTPWFK
-        FOREIGN KEY (Account_PW, Member_ID) REFERENCES ACCOUNT (Account_PW, Member_ID)
-            ON DELETE CASCADE ON UPDATE CASCADE;
+-- alter table customer to add FK Account_PW, Member_ID #removed from errors
+# ALTER TABLE CUSTOMER
+#     ADD CONSTRAINT CUSTACCTPWFK
+#         FOREIGN KEY (Account_PW, Member_ID) REFERENCES ACCOUNT (Account_PW, Member_ID)
+#             ON DELETE CASCADE ON UPDATE CASCADE;
 
 \! echo "altering tables with foreign keys...";
 -- alter table account to add FK Email
