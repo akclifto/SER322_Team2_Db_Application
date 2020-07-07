@@ -1012,7 +1012,7 @@ public class Application {
         //set scanner and get input
         try (Scanner scan = new Scanner(System.in)) {
 
-            //user inputs, then send off to either other methods.
+            //user inputs, then send off to appropriate methods.
             while (scan.hasNext()) {
 
                 String in = scan.next();
