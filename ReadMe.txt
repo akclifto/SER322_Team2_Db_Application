@@ -12,6 +12,7 @@ called "VGS", select the database, show its tables, and describe each for easier
 
 	1 -  VGS_Team2_Init.sql
 
+<<<<<<< HEAD
 This can be execute from the mySql server command line client with the following:
     "source C://<path-to-file-location>/SER322 Project Team 2/sql/VGS_Team2_Init.sql;"
 
@@ -22,7 +23,6 @@ The program provided is already compiled. To launch application from the command
     or a more in-depth example:
 
     java -cp lib/mysql-connector-java-8.0.20.jar;bin vgs.Application "jdbc:mysql://localhost/VGS?autoReconnect=true&useSSL=false" root root com.mysql.cj.jdbc.Driver
-
 
 Video Presentation link: 
 	***
