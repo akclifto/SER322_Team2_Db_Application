@@ -189,7 +189,7 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
-     * @author Ivan Ferndandez (iafernan@asu.edu)
+     * @author Ivan Fernandez (iafernan@asu.edu)
      */
     private static void selectPreset(Scanner scan) {
 
@@ -219,7 +219,7 @@ public class Application {
         int selection;
 
         do {
-            System.out.println("Please enter the integer associated with a presetQuery");
+            System.out.println("Please enter the integer associated with one of six preset Queries: ");
             System.out.println("1. " + query1 + "\n");
             System.out.println("2. " + query2 + "\n");
             System.out.println("3. " + query3 + "\n");
@@ -337,7 +337,7 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
-     * @author Ivan Ferndandez (iafernan@asu.edu)
+     * @author Ivan Fernandez (iafernan@asu.edu)
      */
     private static void insertData(Scanner scan) {
 
@@ -359,7 +359,7 @@ public class Application {
 
 
         do {
-            System.out.println("Please select enter the integer associated with the table to insert a tuple into: ");
+            System.out.println("Please select and enter the integer associated with the table to insert a tuple into: ");
             System.out.println("1. Account, 2. Customer, 3. Genre, 4. Logs_Into, 5. Platform, 6. Platform_Type, 7. Save_Game_File, \n" +
                     "8. Title, 9. User_Library");
 
@@ -670,7 +670,7 @@ public class Application {
      *
      * @param scan : scanner for user input.
      * @return void.
-     * @author Ivan Ferndandez (iafernan@asu.edu)
+     * @author Ivan Fernandez (iafernan@asu.edu)
      */
     private static void removeData(Scanner scan) {
 
@@ -681,7 +681,7 @@ public class Application {
         long colLong;
 
         do {
-            System.out.println("Please select enter the integer corresponding to the table to DELETE a tuple from: ");
+            System.out.println("Please select and enter the integer corresponding to the table to DELETE a tuple from: ");
             System.out.println("1. Account, 2. Customer, 3. Genre, 4. Logs_Into, 5. Platform, 6. Platform_Type, 7. Save_Game_File, \n" +
                     "8. Title, 9. User_Library");
 
