@@ -1,6 +1,14 @@
 package vgs;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSetMetaData;
+import java.sql.Time;
+import java.sql.Date;
 import java.util.Scanner;
 
 /**
@@ -1001,8 +1009,8 @@ public class Application {
 
         //show menu options
         System.out.println("Main Menu: ");
-        System.out.println("1 - Write your own query");
-        System.out.println("2 - Use preset queries provided with application");
+        System.out.println("1 - Write your own selection query");
+        System.out.println("2 - Preset queries provided with application");
         System.out.println("3 - Insert data into database");
         System.out.println("4 - Remove data from database");
         System.out.println("5 - Update existing data in database");
@@ -1017,22 +1025,22 @@ public class Application {
 
                 String in = scan.next();
 
-                if (in.equals("1")) {
+                if (in.equals("1") || in.equalsIgnoreCase("Write")) {
 
                     writeQuery(scan);
-                } else if (in.equals("2")) {
+                } else if (in.equals("2") || in.equalsIgnoreCase("Preset")) {
 
                     selectPreset(scan);
-                } else if (in.equals(("3"))) {
+                } else if (in.equals("3") || in.equalsIgnoreCase("Insert")) {
 
                     insertData(scan);
-                } else if (in.equals(("4"))) {
+                } else if (in.equals("4") || in.equalsIgnoreCase("Remove")) {
 
                     removeData(scan);
-                } else if (in.equals("5")) {
+                } else if (in.equals("5") || in.equalsIgnoreCase("Update")) {
 
                     updateTable(scan);
-                } else if (in.equalsIgnoreCase(("Q"))) {
+                } else if (in.equalsIgnoreCase("Q") || in.equalsIgnoreCase("Exit")) {
 
                     exitProgram(scan);
                     break;
