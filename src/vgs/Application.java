@@ -79,7 +79,7 @@ public class Application {
                     if (debugFlag) debug("Query after: " + query);
                 }
 
-                System.out.println("Executing user query: " + query + ";\n");
+                System.out.println("Executing on server: " + query + ";\n");
                 //prepare the statement and execute
                 pStmt = conn.prepareStatement(query);
                 rs = pStmt.executeQuery();
@@ -954,7 +954,7 @@ public class Application {
                     if (debugFlag) debug("Update statement after: " + update);
                 }
 
-                System.out.println("Executing user update statement: " + update + ";\n");
+                System.out.println("Executing on server: " + update + ";\n");
                 //prepare the statement and execute
                 pStmt = conn.prepareStatement(update);
                 pStmt.executeUpdate(update);
