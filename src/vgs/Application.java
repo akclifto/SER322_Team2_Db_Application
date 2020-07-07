@@ -50,8 +50,8 @@ public class Application {
         PreparedStatement pStmt = null;
 
         System.out.println("\n----------------------");
-        System.out.println("WRITE YOU OWN QUERY");
-        System.out.println("-----------------------");
+        System.out.println("SELECTION QUERY");
+        System.out.println("----------------------");
         System.out.println("Here, you can manually write your own query to access information from the "
                 + "VGS database.");
         System.out.println("\nSample query format: "
