@@ -12,7 +12,6 @@ called "VGS", select the database, show its tables, and describe each for easier
 
 	1 -  VGS_Team2_Init.sql
 
-<<<<<<< HEAD
 This can be execute from the mySql server command line client with the following:
     "source C://<path-to-file-location>/SER322 Project Team 2/sql/VGS_Team2_Init.sql;"
 
