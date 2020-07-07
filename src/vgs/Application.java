@@ -50,8 +50,8 @@ public class Application {
         PreparedStatement pStmt = null;
 
         System.out.println("\n----------------------");
-        System.out.println("WRITE YOU OWN QUERY");
-        System.out.println("-----------------------");
+        System.out.println("SELECTION QUERY");
+        System.out.println("----------------------");
         System.out.println("Here, you can manually write your own query to access information from the "
                 + "VGS database.");
         System.out.println("\nSample query format: "
@@ -79,7 +79,7 @@ public class Application {
                     if (debugFlag) debug("Query after: " + query);
                 }
 
-                System.out.println("Executing user query: " + query + ";\n");
+                System.out.println("Executing on server: " + query + ";\n");
                 //prepare the statement and execute
                 pStmt = conn.prepareStatement(query);
                 rs = pStmt.executeQuery();
@@ -916,7 +916,7 @@ public class Application {
      * Method to update table in database.
      * <p>
      * example update statement:
-     *      "update customer set middle_name="Testname" where first_name="brandon";"
+     * "update customer set middle_name="Testname" where first_name="brandon";"
      *
      * @param scan : scanner for user input
      * @return void.
@@ -929,7 +929,7 @@ public class Application {
         System.out.println("\n----------------------");
         System.out.println("UPDATE TABLE");
         System.out.println("----------------------");
-        System.out.println("Here, you can enter an update statemet to change existing data within the database.");
+        System.out.println("Here, you can enter an update statement to change existing data within the database.");
         System.out.println("\nSample update statement: "
                 + "\n \t\t update customer set middle_name=\"Testname\" where first_name=\"brandon\";\n");
 
@@ -954,7 +954,7 @@ public class Application {
                     if (debugFlag) debug("Update statement after: " + update);
                 }
 
-                System.out.println("Executing user update statement: " + update + ";\n");
+                System.out.println("Executing on server: " + update + ";\n");
                 //prepare the statement and execute
                 pStmt = conn.prepareStatement(update);
                 pStmt.executeUpdate(update);
