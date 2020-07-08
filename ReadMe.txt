@@ -26,7 +26,7 @@ The program provided is already compiled. To launch application from the command
 
 Video Presentation link:
 
-	***
+	https://www.youtube.com/watch?v=GLtrnNiRtro&feature=youtu.be
 
 
 If you have any issues running the program, please let us know. Thank you.
